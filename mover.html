@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mover Game</title>
+    <!-- <script type="text/javascript" src="uhltest.js"></script> -->
+</head>
+<body>
+    <!-- <a href="wordle.html" target="_blank">Wordle Game</a>
+    <a href="wordle.html" target="_blank">Wordle Game</a> -->
+
+    <h1 style="text-align: center;">Mr. Uhl's Advanced Topics Page!!!</h1>
+    <h1 style="text-align: center;"></h1>
+
+    <div style="text-align: center">
+        <canvas id="testCanvas" width="1000px" height="480px"></canvas>
+        </canvas>
+    </div>
+    <!-- <canvas id="testCanvas" width="1200px" height="500px"></canvas> -->
+    <script>
+        class sprite{
+            constructor(x, y, w, h, dx, dy, moveSpeed, color) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+                this.dx = dx;
+                this.dy = dy;
+                this.moveSpeed = moveSpeed;
+                this.color = color;
+                this.up = false;
+                this.down = false;
+                this.left = false;
+                this.right = false;
+            }
+            update(){
+                this.x+=this.dx;
+                this.y+=this.dy;
+            }
+            draw(ctx){
+                ctx.beginPath();
+                ctx.fillStyle = this.color;
+                ctx.rect(this.x, this.y, 50, 50);
+                ctx.fill();
+                ctx.closePath();
+                ctx.beginPath();
+                ctx.rect(this.x, this.y, 50, 50);
+                ctx.strokeStyle = "black";
+                ctx.lineWidth = 5;
+                ctx.stroke();
+                ctx.closePath();
+            }
+            moveFree(canvas){
+                if(this.x < 0 || this.x > canvas.width-this.w)
+                this.dx=-this.dx;
+                if(this.y < 0 || this.y > canvas.height-this.h)
+                this.dy=-this.dy;
+            }
+            moveKey(canvas){
+                if(this.up) this.dy = -this.moveSpeed;
+                else if(this.down) this.dy = this.moveSpeed;
+                else this.dy = 0;
+                if(this.left) this.dx = -this.moveSpeed;
+                else if(this.right) this.dx = this.moveSpeed;
+                else this.dx = 0;
+
+                if(this.x < -this.w)
+                    this.x = canvas.width;
+                if(this.x > canvas.width)
+                    this.x = -this.w;
+                if(this.y < -this.h)
+                    this.y = canvas.height;
+                if(this.y > canvas.height)
+                    this.y = -this.h;
+            }
+            keyPressed(key){
+                if (key == 37) {
+                    this.left = true;
+                }else if (key == 39) {
+                    this.right = true;
+                }else if (key == 38) {
+                    this.up = true;
+                }else if (key == 40) {
+                    this.down = true;
+                }
+            }
+            keyReleased(key){
+                if (key == 37) {
+                    this.left = false;
+                }else if (key == 39) {
+                    this.right = false;
+                }else if (key == 38) {
+                    this.up = false;
+                }else if (key == 40) {
+                    this.down = false;
+                }
+            }
+            
+        }
+
+        let canvas = document.getElementById("testCanvas");
+        var ctx  = canvas.getContext("2d");
+        setInterval(update, 1);
+
+        //Free Mover
+        var sprite1 = new sprite(30, 30, 50, 50, 1, 1, 1, "red");
+        //Key Mover
+        var sprite2 = new sprite(30, 30, 50, 50, 0, 0, 2, "green");
+        
+        function update() {
+            sprite1.moveFree(canvas);
+            
+            sprite1.update();
+            sprite2.moveKey(canvas);
+            sprite2.update();
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "lightgray";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            sprite2.draw(ctx);
+            sprite1.draw(ctx);
+        }
+
+        window.onkeydown = function(e) {
+            var key = e.keyCode ? e.keyCode : e.which;
+            sprite2.keyPressed(key);
+        }
+        window.onkeyup = function(e) {
+            var key = e.keyCode ? e.keyCode : e.which;
+            sprite2.keyReleased(key);
+        }
+        
+    </script>
+
+    <br>
+
+    <div style="text-align: center;">
+    <button onClick="javascript:alert('Imagine the possibilities!')">Press Me</button>
+    </div>
+
+</body>
+</html>
