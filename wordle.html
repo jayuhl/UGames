@@ -17,7 +17,6 @@
     // regular wordle
     let random = Math.round(Math.random()*(words.length-1));
     let wordOfTheDay = words[random];
-    // robotics wordle
     // let random = Math.round(Math.random()*(answers.length-1));
     // let wordOfTheDay = answers[random];
     console.log(wordOfTheDay);
@@ -49,11 +48,11 @@
                     if(currentLetter > 1) {
                         if(currentLetter == 5 && document.getElementById(currentWord + "-" + 5).innerHTML != "") {
                         document.getElementById(currentWord + "-" + currentLetter).innerHTML = "";
-                        document.getElementById(currentWord + "-" + currentLetter).style.borderColor = "#3A3A55";
+                        document.getElementById(currentWord + "-" + currentLetter).style.borderColor = "rgb(200, 200, 200)";
                         }
                         else {
                             document.getElementById(currentWord + "-" + (currentLetter-1)).innerHTML = "";
-                            document.getElementById(currentWord + "-" + (currentLetter-1)).style.borderColor = "#3A3A55";
+                            document.getElementById(currentWord + "-" + (currentLetter-1)).style.borderColor = "rgb(200, 200, 200)";
                             if(currentLetter > 1) {
                                 currentLetter--;
                             }
@@ -67,7 +66,7 @@
                     if(words.includes(currentEntry) || currentEntry == wordOfTheDay) {
                         updateColors(currentEntry, currentWord);
                         if(currentEntry != wordOfTheDay && !won && currentWord < 6) {
-                            document.getElementById("alert").innerHTML = "Word found";
+                            document.getElementById("alert").innerHTML = "&#x20 ";//Word Found
                         }
                         currentWord++;
                         currentLetter = 1;
@@ -101,12 +100,16 @@
         if(letter == "delete") {
             if(currentLetter > 1) {
                 if(currentLetter == 5 && document.getElementById(currentWord + "-" + 5).innerHTML != "") {
-                document.getElementById(currentWord + "-" + currentLetter).innerHTML = "";
-                document.getElementById(currentWord + "-" + currentLetter).style.borderColor = "#3A3A55";
+                    document.getElementById(currentWord + "-" + currentLetter).innerHTML = "";
+                    document.getElementById(currentWord + "-" + currentLetter).style.borderColor = "rgb(200, 200, 200)";
                 }
                 else {
                     document.getElementById(currentWord + "-" + (currentLetter-1)).innerHTML = "";
-                    document.getElementById(currentWord + "-" + (currentLetter-1)).style.borderColor = "#3A3A55";
+                    document.getElementById(currentWord + "-" + (currentLetter-1)).style.borderColor = "rgb(200, 200, 200)";
+                    
+                    //remove dark border
+                    // document.getElementById(currentWord + "-" + (currentLetter-1)).style.borderColor = "red";
+                    
                     if(currentLetter > 1) {
                         currentLetter--;
                     }
@@ -120,7 +123,7 @@
             if(words.includes(currentEntry) || currentEntry == wordOfTheDay) {
                 updateColors(currentEntry, currentWord);
                 if(currentEntry != wordOfTheDay && !won && currentWord < 6) {
-                    document.getElementById("alert").innerHTML = "Word found";
+                    document.getElementById("alert").innerHTML = "&#x20 ";//Word found
                 }
                 currentWord++;
                 currentLetter = 1;
@@ -129,10 +132,14 @@
             else {
                 document.getElementById("alert").innerHTML = "Word not found";
                 console.log(currentEntry);
+                console.log("YO!");
             }
         }
         else if(letter == "enter" && currentEntry.length < 5) {
             document.getElementById("alert").innerHTML = "Word not long enough";
+            console.log("YO!");
+                // console.log(document.getElementById(currentWord + "-" + currentLetter).style.borderColor);
+
         }
     }
 
@@ -195,7 +202,7 @@
         </div>
         <div class="col-6 d-flex justify-content-center">
             <a class="navbar-brand text-center">
-                <h1 class="mt-3">Wordler</h1>
+                <h1 class="mt-3" style="font-family: serif">Wordler</h1>
             </a>
         </div>
         <div class="col-3">
@@ -282,7 +289,7 @@
     <div class="container d-flex justify-content-center">
         <table>
             <tr>
-                <td class="letters px-2" id="delete"  onclick="keyboard('delete')">DELETE</td>
+                <td class="letters P" id="enter"  onclick="keyboard('enter')">&#9166</td>
                 <td class="letters" id="z" onclick="keyboard('z')">Z</td>
                 <td class="letters" id="x" onclick="keyboard('x')">X</td>
                 <td class="letters" id="c" onclick="keyboard('c')">C</td>
@@ -290,7 +297,7 @@
                 <td class="letters" id="b" onclick="keyboard('b')">B</td>
                 <td class="letters" id="n" onclick="keyboard('n')">N</td>
                 <td class="letters" id="m" onclick="keyboard('m')">M</td>
-                <td class="letters px-2" id="enter" onclick="keyboard('enter')">ENTER</td>
+                <td class="letters" id="delete" onclick="keyboard('delete')">&#x232B;</td>
             </tr>
         </table>
     </div>
