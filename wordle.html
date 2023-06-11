@@ -29,6 +29,7 @@
     let currentEntry = "";
     function wordle() {
         document.onkeydown = function (e) {
+            document.getElementById("alert").innerHTML = "";
             e = e || window.event;
             // console.log(e.keyCode);
             // entering letters
@@ -85,6 +86,7 @@
     }
 
     function keyboard(letter) {
+        document.getElementById("alert").innerHTML = "";
         // entering letters
         if(!won && currentWord < 7 && letter != "delete" && letter != "enter") {
             if(document.getElementById(currentWord + "-" + currentLetter).innerHTML == "") {
@@ -137,9 +139,6 @@
         }
         else if(letter == "enter" && currentEntry.length < 5) {
             document.getElementById("alert").innerHTML = "Word not long enough";
-            console.log("YO!");
-                // console.log(document.getElementById(currentWord + "-" + currentLetter).style.borderColor);
-
         }
     }
 
@@ -181,10 +180,16 @@
             var message = "Excellent!"
             if(currentWord == 1)
                 message = "Genius!";
-            if(currentWord == 2)
+            else if(currentWord == 2)
                 message = "Magnificent!";
-            if(currentWord == 3 || currentWord == 4)
+            else if(currentWord == 3)
+                message = "Impressive!";
+            else if(currentWord == 4)
                 message = "Splendid!";
+            else if(currentWord == 5)
+                message = "Great!";
+            else
+                message = "Phew!";
             document.getElementById("alert").innerHTML = message;
             won = true;
         }
