@@ -29,7 +29,8 @@
     let currentEntry = "";
     function wordle() {
         document.onkeydown = function (e) {
-            document.getElementById("alert").innerHTML = "";
+            if(!won && e.which >= 65 && e.which <= 90 || e.which == 8)
+                document.getElementById("alert").innerHTML = "";
             e = e || window.event;
             // console.log(e.keyCode);
             // entering letters
