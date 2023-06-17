@@ -12,7 +12,7 @@
 </script>
 
 <script>
-    let won = false;
+    let gameOver = false;
     let random = Math.round(Math.random()*(words.length-1));
     let wordOfTheDay = words[random].toUpperCase();
     console.log(wordOfTheDay);
@@ -45,7 +45,7 @@
     function registerKeyPress(keyNum) {
         // console.log("PROCESSING KEY: " + keyNum);
         //Enter a letter
-        if(!won && currentWord < 7) {
+        if(!gameOver && currentWord < 7) {
             if(keyNum >= 65 && keyNum <= 90) {
                 document.getElementById("alert").innerHTML = "";
                 if(document.getElementById(currentWord + "-" + currentLetter).innerHTML == "") {
@@ -92,12 +92,13 @@
                         else if(currentWord == 5) message = "Great!";
                         else message = "Phew!";
                         document.getElementById("alert").innerHTML = message;
-                        won = true;
+                        gameOver = true;
                     }
                     //lose
-                    else if(!won && currentWord > 5) {
+                    else if(!gameOver && currentWord > 5) {
                         // console.log("hello");
                         document.getElementById("alert").innerHTML = "You lose! The word was <em>" + wordOfTheDay + "</em>";
+                        gameOver = true;
                     }
                     else {
                         //prepare for next word
@@ -239,7 +240,7 @@
 
    function resetGame()
    {
-        won = false;
+        gameOver = false;
         random = Math.round(Math.random()*(words.length-1));
         wordOfTheDay = words[random].toUpperCase();
         console.log(wordOfTheDay);
