@@ -14,10 +14,10 @@
 <script>
     let gameOver = false;
     let random = Math.round(Math.random()*(words.length-1));
-    let wordOfTheDay = words[random].toUpperCase();
-    console.log(wordOfTheDay);
+    let winWord = words[random].toUpperCase();
+    console.log(winWord);
 
-    let currentWord = 1;
+    let currentWordNum = 1;
     let currentLetter = 1;
     let currentEntry = "";
 
@@ -45,12 +45,13 @@
     function registerKeyPress(keyNum) {
         // console.log("PROCESSING KEY: " + keyNum);
         //Enter a letter
-        if(!gameOver && currentWord < 7) {
+        if(!gameOver && currentWordNum < 7) {
             if(keyNum >= 65 && keyNum <= 90) {
                 document.getElementById("alert").innerHTML = "";
-                if(document.getElementById(currentWord + "-" + currentLetter).innerHTML == "") {
-                    document.getElementById(currentWord + "-" + currentLetter).innerHTML = String.fromCharCode(keyNum);
-                    document.getElementById(currentWord + "-" + currentLetter).style.borderColor = "#565758";
+                hidePopup();
+                if(document.getElementById(currentWordNum + "-" + currentLetter).innerHTML == "") {
+                    document.getElementById(currentWordNum + "-" + currentLetter).innerHTML = String.fromCharCode(keyNum);
+                    document.getElementById(currentWordNum + "-" + currentLetter).style.borderColor = "#565758";
                     currentEntry += String.fromCharCode(keyNum);
                 }
                 if(currentLetter < 5) {
@@ -60,14 +61,15 @@
             //Remove a letter
             if(keyNum == 8) {
                 document.getElementById("alert").innerHTML = "";
+                hidePopup();
                 if(currentLetter > 1) {
-                    if(currentLetter == 5 && document.getElementById(currentWord + "-" + 5).innerHTML != "") {
-                        document.getElementById(currentWord + "-" + currentLetter).innerHTML = "";
-                        document.getElementById(currentWord + "-" + currentLetter).style.borderColor = "rgb(200, 200, 200)";
+                    if(currentLetter == 5 && document.getElementById(currentWordNum + "-" + 5).innerHTML != "") {
+                        document.getElementById(currentWordNum + "-" + currentLetter).innerHTML = "";
+                        document.getElementById(currentWordNum + "-" + currentLetter).style.borderColor = "rgb(200, 200, 200)";
                     }
                     else {
-                        document.getElementById(currentWord + "-" + (currentLetter-1)).innerHTML = "";
-                        document.getElementById(currentWord + "-" + (currentLetter-1)).style.borderColor = "rgb(200, 200, 200)";
+                        document.getElementById(currentWordNum + "-" + (currentLetter-1)).innerHTML = "";
+                        document.getElementById(currentWordNum + "-" + (currentLetter-1)).style.borderColor = "rgb(200, 200, 200)";
                         if(currentLetter > 1) {
                             currentLetter--;
                         }
@@ -76,45 +78,53 @@
                 }
             }
             //Submit word
-            if(keyNum == 13 && document.getElementById(currentWord + "-" + 5).innerHTML != "") {
+            if(keyNum == 13 && document.getElementById(currentWordNum + "-" + 5).innerHTML != "") {
                 document.getElementById("alert").innerHTML = "";
-                if(words.includes(currentEntry.toLowerCase()) || currentEntry == wordOfTheDay) {
-                    updateTileColors(currentEntry, currentWord);
+                if(words.includes(currentEntry.toLowerCase()) || currentEntry == winWord) {
+                    updateTileColors(currentEntry, currentWordNum);
                     updateKeyboardColors();
                     //check for game over
                     //win
-                    if(currentEntry == wordOfTheDay) {
+                    if(currentEntry == winWord) {
                         var message = "Excellent!"
-                        if(currentWord == 1) message = "Genius!";
-                        else if(currentWord == 2) message = "Magnificent!";
-                        else if(currentWord == 3) message = "Impressive!";
-                        else if(currentWord == 4) message = "Splendid!";
-                        else if(currentWord == 5) message = "Great!";
+                        if(currentWordNum == 1) message = "Genius!";
+                        else if(currentWordNum == 2) message = "Magnificent!";
+                        else if(currentWordNum == 3) message = "Impressive!";
+                        else if(currentWordNum == 4) message = "Splendid!";
+                        else if(currentWordNum == 5) message = "Great!";
                         else message = "Phew!";
-                        document.getElementById("alert").innerHTML = message;
+                        document.getElementById("alert").innerHTML = '+ to play again';
                         gameOver = true;
+                        showPopup(message);
                     }
                     //lose
-                    else if(!gameOver && currentWord > 5) {
+                    else if(!gameOver && currentWordNum > 5) {
                         // console.log("hello");
-                        document.getElementById("alert").innerHTML = "You lose! The word was <em>" + wordOfTheDay + "</em>";
+                        // var message = "You lose! The word was <em>" + winWord + "</em>";
+                        var message = winWord;
+                        document.getElementById("alert").innerHTML = '+ to play again';
                         gameOver = true;
+                        showPopup(message);
                     }
                     else {
                         //prepare for next word
-                        currentWord++;
+                        currentWordNum++;
                         currentLetter = 1;
                         currentEntry = "";
                     }
                 }
                 else {
-                    document.getElementById("alert").innerHTML = "Not in word list";
+                    var message = "Not in word list";
+                    document.getElementById("alert").innerHTML = 'Try another word';
+                    showPopup(message);
                     // console.log(currentEntry);
                     // console.log("YO!");
                 }
             }
             else if(keyNum == 13 && currentEntry.length < 5) {
-                document.getElementById("alert").innerHTML = "Not enough letters " + wordOfTheDay;
+                var message = "Not enough letters";
+                document.getElementById("alert").innerHTML = "Not enough letters " + winWord;
+                showPopup(message);
             }
         }
         else {
@@ -122,18 +132,17 @@
             if(keyNum == 187) {
                 resetGame();
             }
-
         }
     }
 
-    function updateTileColors(currentEntry, currentWord) {
+    function updateTileColors(currentEntry, currentWordNum) {
         var colorCodes = getGuessAsColorCodes(currentEntry);
         for(var i = 0; i < colorCodes.length; i++) {
 
             var currentLetterCode = colorCodes.substring(i, i+1);
             // console.log("updateTileColors:" + colorCodes.substring(i, i+1));
 
-            var currentTile = document.getElementById(currentWord + "-" + (i+1));
+            var currentTile = document.getElementById(currentWordNum + "-" + (i+1));
 
             //Assign default colors
             var fillColor = "rgb(120,124,126)";
@@ -159,10 +168,10 @@
 
     function updateKeyboardColors() {
         // var keys = document.getElementsByClassName("letters");
-        for(var r=1; r <= currentWord; r++) {
+        for(var r=1; r <= currentWordNum; r++) {
             for(var c=1; c <= 5; c++) {
                 var keyLetter = document.getElementById(r+"-"+c).innerHTML;
-                // console.log("Check green: " + r + "-" + c + ": " + keyLetter + "... Am I in the word? " + wordOfTheDay.indexOf(keyLetter))
+                // console.log("Check green: " + r + "-" + c + ": " + keyLetter + "... Am I in the word? " + winWord.indexOf(keyLetter))
                 var key = document.getElementById(keyLetter.toLowerCase());
                 if(isGreen(keyLetter)) {
                     // console.log("Key is: " + keyLetter.toLowerCase());
@@ -185,10 +194,10 @@
     }
 
     function isGreen(letter) {
-        for(var r = 1; r <= currentWord; r++) {
-            for(var c = 1; c <= wordOfTheDay.length; c++) {
+        for(var r = 1; r <= currentWordNum; r++) {
+            for(var c = 1; c <= winWord.length; c++) {
                 var nextLetter = document.getElementById(r+"-"+c).innerHTML;
-                if(wordOfTheDay.charAt(c-1) == nextLetter && wordOfTheDay.substring(c-1, c) == letter)
+                if(winWord.charAt(c-1) == nextLetter && winWord.substring(c-1, c) == letter)
                     return true;
             }
         }
@@ -200,8 +209,8 @@
     }
 
     function isGuessed(letter) {
-        for(var r = 1; r <= currentWord; r++) {
-            for(var c = 1; c <= wordOfTheDay.length; c++) {
+        for(var r = 1; r <= currentWordNum; r++) {
+            for(var c = 1; c <= winWord.length; c++) {
                 var nextLetter = document.getElementById(r+"-"+c).innerHTML;
                 if(letter == nextLetter)
                     return true;
@@ -211,12 +220,12 @@
     }
 
     function isInWord(letter) {
-        return wordOfTheDay.indexOf(letter) >= 0;
+        return winWord.indexOf(letter) >= 0;
     }
 
     function getGuessAsColorCodes(guess)
     {
-      var win = wordOfTheDay;
+      var win = winWord;
       //Identify GREEN locations with "*"
       for(var i=0; i < guess.length; i++)
          if(guess.charAt(i) == win.charAt(i)) {
@@ -242,11 +251,13 @@
    {
         gameOver = false;
         random = Math.round(Math.random()*(words.length-1));
-        wordOfTheDay = words[random].toUpperCase();
-        console.log(wordOfTheDay);
-        currentWord = 1;
+        winWord = words[random].toUpperCase();
+        console.log(winWord);
+        currentWordNum = 1;
         currentLetter = 1;
         currentEntry = "";
+
+        hidePopup();
 
         document.getElementById("alert").innerHTML = "Welcome to Wordler";
 
@@ -280,7 +291,20 @@
             keys[i].style.backgroundColor = "rgb(220,220,220)";
             keys[i].style.borderColor = "rgb(220,220,220)";
         }
-   }
+    }
+
+    function showPopup(message) {
+        var popup = document.getElementById("myPopup");
+        popup.innerHTML = message;
+        popup.style.visibility = 'visible';
+        // popup.classList.toggle('show'); explore a fade
+    }
+
+    function hidePopup() {
+        var popup = document.getElementById("myPopup");
+        popup.innerHTML = "";
+        popup.style.visibility = 'hidden';
+    }
 
 </script>
 
@@ -288,14 +312,19 @@
     <div class="row" id="navbar">
         <div class="col-3">
         </div>
-        <div class="col-6 d-flex justify-content-center">
+        <!-- <div class="col-6 d-flex justify-content-center"> -->
             <a class="navbar-brand text-center">
                 <h1 class="mt-3" style="font-family: serif">Wordler</h1>
             </a>
-        </div>
+        <!-- </div> -->
         <div class="col-3">
         </div>
     </div>
+
+    <div class="center popup">
+        <div class="popuptext" id="myPopup">Wordler!</div>
+    </div>
+
     <div class="container d-flex justify-content-center mt-3">
         <table>
             <tr>
@@ -395,63 +424,102 @@
 
 <style>
     html {
-        overflow-x:hidden;
+        overflow-x: hidden;
         -webkit-user-select: none;        
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
     }
-
     h1 {
-        font-weight:bold!important;
+        font-weight: bold!important;
     }
-
     #navbar {
-        background-color:#fff;
+        background-color: #fff;
         border-bottom:1px solid #000;
     }
-
     a {
-        color:#110e01!important;
+        color: #110e01!important;
     }
-
     body {
-        background-color:#fff
+        background-color: #fff
     }
-    
     table {
         border-collapse: separate;
         border-spacing: 6px;
     }
-
     td {
-        width:60px;
-        height:60px;
-        border:2px solid rgb(200, 200, 200);
-        /* color:#fff; */
+        width: 60px;
+        height: 60px;
+        border: 2px solid rgb(200, 200, 200);
         color: black;
-        text-align:center;
-        font-weight:bold;
-        font-size:30px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 30px;
     }
-
     .letters {
-        width:40px;
-        height:50px;
-        background-color:rgb(220, 220, 220);
+        width: 40px;
+        height: 50px;
+        background-color: rgb(220, 220, 220);
         border-radius: 5px;
-        /* border:2px solid #3A3A55; */
-        border:2px solid rgb(220, 220, 220);
-        color:#000;
-        text-align:center;
-        font-weight:bold;
-        font-size:20px;
+        border: 2px solid rgb(220, 220, 220);
+        color: #000;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
     }
-
     p {
         font-size: 20px;
-        font-weight:bold;
-        color:#ff0000;
+        font-weight: bold;
+        color: #ff0000;
     }
 
+    /* popup stuff */
+    .center {
+        /* border: 5px solid; */
+        margin: auto;
+        width: 100px;
+        padding: 10px;
+    }
+    .popup {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        /* cursor: pointer; */
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    /* The actual popup */
+    .popup .popuptext {
+        visibility: hidden;
+        font-size: 12px;
+        font-weight: 600;
+        background-color: rgb(0, 0, 0);
+        color: #fff;
+        /* text-align: center; */
+        border-radius: 4px;
+        padding: 10px 10px;
+        position: absolute;
+        z-index: 1;
+        margin-top: 10px;
+    }
+    /* Toggle this class - hide and show the popup */
+    .popup .show {
+        visibility: visible;
+        -webkit-animation: fadeIn 1s;
+        animation: fadeIn 2s;
+    }
+    /* Add animation (fade in the popup) */
+    @-webkit-keyframes fadeIn {
+        from {opacity: 0;} 
+        to {opacity: 1;}
+    }
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity:1 ;}
+    }
 </style>
