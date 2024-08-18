@@ -79,7 +79,7 @@
             //Submit code guess
             if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
                 document.getElementById("alert").innerHTML = "";
-                if(words.includes(currentEntry.toLowerCase()) || currentEntry == winCode) {
+                if(currentEntry == winCode) {
                     updateTileColors(currentEntry, currentGuessNum);
                     //updateKeyboardColors();
                     //check for game over
@@ -249,9 +249,10 @@
    function resetGame()
    {
         gameOver = false;
-        random = Math.round(Math.random()*(words.length-1));
-        winCode = words[random].toUpperCase();
-        console.log(winCode);
+        // random = Math.round(Math.random()*(words.length-1));
+        // winCode = words[random].toUpperCase();
+        winCode = "4321";
+        console.log("winCode = " + winCode);
         currentGuessNum = 1;
         currentSquare = 1;
         currentEntry = "";
