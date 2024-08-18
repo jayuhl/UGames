@@ -115,7 +115,7 @@
         document.getElementById("alert").innerHTML = "";
         updateTileColors(currentEntry, currentGuessNum);
         //updateKeyboardColors();
-        if(currentEntry.length() == codeLength) {
+        if(currentEntry.length == codeLength) {
             if(isValidGuess()) {
                 //check for game over
                 checkWin();
