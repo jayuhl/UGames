@@ -115,15 +115,35 @@
         document.getElementById("alert").innerHTML = "";
         //updateTileColors(currentEntry, currentGuessNum);
         //updateKeyboardColors();
-        //check for game over
-        checkWin();
-        checkLose();
-        if(!gameOver) {
-            //prepare for next word
-            currentGuessNum++;
-            currentSquare = 1;
-            currentEntry = "";
+        if(currentEntry.length() == codeLength) {
+            if(isValidGuess()) {
+                //check for game over
+                checkWin();
+                checkLose();
+                if(!gameOver) {
+                    //prepare for next word
+                    currentGuessNum++;
+                    currentSquare = 1;
+                    currentEntry = "";
+                }
+            }
+            else {
+                var message = "Not a valid guess";
+                document.getElementById("alert").innerHTML = 'Try another guess';
+                showPopup(message);
+                console.log(currentEntry);
+                console.log("YO!");
+            }
         }
+        else {
+            var message = "Not enough numbers";
+            document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
+            showPopup(message);
+        }
+    }
+
+    function isValisGuess() {
+        return true;
     }
     
     function checkWin() {
