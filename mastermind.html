@@ -385,10 +385,12 @@
                 <td id="2-3"></td>
                 <td id="2-4"></td>
                 <td id="pegbox"
-                    <div class="peg" id="pegs2-1"></div>
-                    <div class="peg" id="pegs2-2"></div>
-                    <div class="peg" id="pegs2-3"></div>
-                    <div class="peg" id="pegs2-4"></div>
+                    <div class="peg-container">
+                        <div class="peg" id="pegs2-1"></div>
+                        <div class="peg" id="pegs2-2"></div>
+                        <div class="peg" id="pegs2-3"></div>
+                        <div class="peg" id="pegs2-4"></div>
+                    </div>
                 </td>
             </tr>
             <tr class="m-2">
@@ -549,6 +551,9 @@
         grid-row: auto auto;
         grid-column-gap: 4px;
         grid-row-gap: 4px;
+        margin-top: 2px;
+        margin-left: 4px;
+        border-color: none;
     }
     
     /* popup stuff */
