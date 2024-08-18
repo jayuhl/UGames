@@ -44,87 +44,67 @@
     function registerKeyPress(keyNum) {
         console.log("PROCESSING KEY: " + keyNum);
         //Enter a letter
-        if(!gameOver && currentGuessNum <= numGuesses) {
-            if(keyNum >= 49 && keyNum <= 52) {
-                document.getElementById("alert").innerHTML = "";
-                hidePopup();
-                if(document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML == "") {
-                    document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = String.fromCharCode(keyNum);
-                    document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "#565758";
-                    currentEntry += String.fromCharCode(keyNum);
-                }
-                if(currentSquare < numGuesses) {
-                    currentSquare++;
-                }
-            }
-            //Remove a number
-            if(keyNum == 8) {
-                document.getElementById("alert").innerHTML = "";
-                hidePopup();
-                if(currentSquare > 1) {
-                    if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
-                        document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = "";
-                        document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "rgb(200, 200, 200)";
+        if(!gameOver) {
+            if(!gameOver && currentGuessNum <= numGuesses) {
+                if(keyNum >= 49 && keyNum <= 52) {
+                    document.getElementById("alert").innerHTML = "";
+                    hidePopup();
+                    if(document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML == "") {
+                        document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = String.fromCharCode(keyNum);
+                        document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "#565758";
+                        currentEntry += String.fromCharCode(keyNum);
                     }
-                    else {
-                        document.getElementById(currentGuessNum + "-" + (currentSquare-1)).innerHTML = "";
-                        document.getElementById(currentGuessNum + "-" + (currentSquare-1)).style.borderColor = "rgb(200, 200, 200)";
-                        if(currentSquare > 1) {
-                            currentSquare--;
+                    if(currentSquare < numGuesses) {
+                        currentSquare++;
+                    }
+                }
+                //Remove a number
+                if(keyNum == 8) {
+                    document.getElementById("alert").innerHTML = "";
+                    hidePopup();
+                    if(currentSquare > 1) {
+                        if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
+                            document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = "";
+                            document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "rgb(200, 200, 200)";
+                        }
+                        else {
+                            document.getElementById(currentGuessNum + "-" + (currentSquare-1)).innerHTML = "";
+                            document.getElementById(currentGuessNum + "-" + (currentSquare-1)).style.borderColor = "rgb(200, 200, 200)";
+                            if(currentSquare > 1) {
+                                currentSquare--;
+                            }
+                        }
+                        currentEntry = currentEntry.slice(0, -1);
+                    }
+                }
+                //Submit code guess
+                if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
+                    document.getElementById("alert").innerHTML = "";
+                    //     updateTileColors(currentEntry, currentGuessNum);
+                        //updateKeyboardColors();
+                        //check for game over
+                        checkWin();
+                        checkLose();
+                    if(!gameOver) {
+                            //prepare for next word
+                            currentGuessNum++;
+                            currentSquare = 1;
+                            currentEntry = "";
                         }
                     }
-                    currentEntry = currentEntry.slice(0, -1);
-                }
-            }
-            //Submit code guess
-            if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
-                document.getElementById("alert").innerHTML = "";
-                if(currentEntry == winCode) {
-                    updateTileColors(currentEntry, currentGuessNum);
-                    //updateKeyboardColors();
-                    //check for game over
-                    //win
-                    if(currentEntry == winCode) {
-                        var message = "Excellent!"
-                        if(currentGuessNum == 1) message = "Genius!";
-                        else if(currentGuessNum == 2) message = "Magnificent!";
-                        else if(currentGuessNum == 3) message = "Impressive!";
-                        else if(currentGuessNum == 4) message = "Splendid!";
-                        else if(currentGuessNum == 5) message = "Great!";
-                        else message = "Phew!";
-                        document.getElementById("alert").innerHTML = '+ to play again';
-                        gameOver = true;
-                        showPopup(message);
-                    }
-                    //lose
-                    else if(!gameOver && currentGuessNum > numGuesses) {
-                        // console.log("hello");
-                        // var message = "You lose! The number was <em>" + winCode + "</em>";
-                        var message = winCode;
-                        document.getElementById("alert").innerHTML = '+ to play again';
-                        gameOver = true;
-                        showPopup(message);
-                    }
                     else {
-                        //prepare for next word
-                        currentGuessNum++;
-                        currentSquare = 1;
-                        currentEntry = "";
+                        var message = "Not a valid guess";
+                        document.getElementById("alert").innerHTML = 'Try another guess';
+                        showPopup(message);
+                        console.log(currentEntry);
+                        // console.log("YO!");
                     }
                 }
-                else {
-                    var message = "Not a valid guess";
-                    document.getElementById("alert").innerHTML = 'Try another guess';
+                else if(keyNum == 13 && currentEntry.length < codeLength) {
+                    var message = "Not enough numbers";
+                    document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
                     showPopup(message);
-                    console.log(currentEntry);
-                    // console.log("YO!");
                 }
-            }
-            else if(keyNum == 13 && currentEntry.length < codeLength) {
-                var message = "Not enough numbers";
-                document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
-                showPopup(message);
-            }
         }
         else {
             // document.getElementById("alert").innerHTML = "REPLAY";
@@ -134,6 +114,32 @@
         }
     }
 
+    function checkWin() {
+        if(currentEntry == winCode) {
+            var message = "Excellent!"
+            if(currentGuessNum == 1) message = "Genius!";
+            else if(currentGuessNum == 2) message = "Magnificent!";
+            else if(currentGuessNum == 3) message = "Impressive!";
+            else if(currentGuessNum == 4) message = "Splendid!";
+            else if(currentGuessNum == 5) message = "Great!";
+            else message = "Phew!";
+            document.getElementById("alert").innerHTML = '+ to play again';
+            gameOver = true;
+            showPopup(message);
+        }
+    }
+
+    function checkLose() {
+        if(!gameOver && currentGuessNum > numGuesses) {
+            // console.log("hello");
+            // var message = "You lose! The number was <em>" + winCode + "</em>";
+            var message = winCode;
+            document.getElementById("alert").innerHTML = '+ to play again';
+            gameOver = true;
+            showPopup(message);
+        }
+    }
+    
     function updateTileColors(currentEntry, currentGuessNum) {
         var colorCodes = getGuessAsColorCodes(currentEntry);
         for(var i = 0; i < colorCodes.length; i++) {
