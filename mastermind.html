@@ -17,6 +17,8 @@
     let currentGuessNum = 1;
     let currentSquare = 1;
     let currentEntry = "";
+    let codeLength = 4;
+    let numGuesses = 5;
 
     //Respond to physical keyboard key press
     function wordle() {
@@ -42,8 +44,8 @@
     function registerKeyPress(keyNum) {
         // console.log("PROCESSING KEY: " + keyNum);
         //Enter a letter
-        if(!gameOver && currentGuessNum < 7) {
-            if(keyNum >= 65 && keyNum <= 90) {
+        if(!gameOver && currentGuessNum <= numGuesses) {
+            if(keyNum >= 49 && keyNum <= 52) {
                 document.getElementById("alert").innerHTML = "";
                 hidePopup();
                 if(document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML == "") {
@@ -51,7 +53,7 @@
                     document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "#565758";
                     currentEntry += String.fromCharCode(keyNum);
                 }
-                if(currentSquare < 5) {
+                if(currentSquare < numGuesses) {
                     currentSquare++;
                 }
             }
@@ -60,7 +62,7 @@
                 document.getElementById("alert").innerHTML = "";
                 hidePopup();
                 if(currentSquare > 1) {
-                    if(currentSquare == 5 && document.getElementById(currentGuessNum + "-" + 5).innerHTML != "") {
+                    if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
                         document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = "";
                         document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "rgb(200, 200, 200)";
                     }
@@ -75,11 +77,11 @@
                 }
             }
             //Submit code guess
-            if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + 5).innerHTML != "") {
+            if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
                 document.getElementById("alert").innerHTML = "";
                 if(words.includes(currentEntry.toLowerCase()) || currentEntry == winCode) {
                     updateTileColors(currentEntry, currentGuessNum);
-                    updateKeyboardColors();
+                    //updateKeyboardColors();
                     //check for game over
                     //win
                     if(currentEntry == winCode) {
@@ -95,7 +97,7 @@
                         showPopup(message);
                     }
                     //lose
-                    else if(!gameOver && currentGuessNum > 5) {
+                    else if(!gameOver && currentGuessNum > numGuesses) {
                         // console.log("hello");
                         // var message = "You lose! The number was <em>" + winCode + "</em>";
                         var message = winCode;
@@ -118,7 +120,7 @@
                     // console.log("YO!");
                 }
             }
-            else if(keyNum == 13 && currentEntry.length < 4) {
+            else if(keyNum == 13 && currentEntry.length < codeLength) {
                 var message = "Not enough numbers";
                 document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
                 showPopup(message);
@@ -163,32 +165,32 @@
         }
     }
 
-    function updateKeyboardColors() {
-        // var keys = document.getElementsByClassName("letters");
-        for(var r=1; r <= currentGuessNum; r++) {
-            for(var c=1; c <= 5; c++) {
-                var keyLetter = document.getElementById(r+"-"+c).innerHTML;
-                // console.log("Check green: " + r + "-" + c + ": " + keyLetter + "... Am I in the number? " + winCode.indexOf(keyLetter))
-                var key = document.getElementById(keyLetter.toLowerCase());
-                if(isGreen(keyLetter)) {
-                    // console.log("Key is: " + keyLetter.toLowerCase());
-                    key.style.backgroundColor = "rgb(110, 170, 100)";
-                    key.style.borderColor = "rgb(110, 170, 100)";
-                    key.style.color = "white";
-                }
-                else if(isGold(keyLetter)) {
-                    key.style.backgroundColor = "rgb(200, 180, 90)";
-                    key.style.borderColor = "rgb(200, 180, 90)";
-                    key.style.color = "white";
-                }
-                else { //must be gray
-                    key.style.backgroundColor = "rgb(120, 124, 126)";
-                    key.style.borderColor = "rgb(120, 124, 126)";
-                    key.style.color = "white";
-                }
-            }
-        }
-    }
+    // function updateKeyboardColors() {
+    //     // var keys = document.getElementsByClassName("letters");
+    //     for(var r=1; r <= currentGuessNum; r++) {
+    //         for(var c=1; c <= 5; c++) {
+    //             var keyLetter = document.getElementById(r+"-"+c).innerHTML;
+    //             // console.log("Check green: " + r + "-" + c + ": " + keyLetter + "... Am I in the number? " + winCode.indexOf(keyLetter))
+    //             var key = document.getElementById(keyLetter.toLowerCase());
+    //             if(isGreen(keyLetter)) {
+    //                 // console.log("Key is: " + keyLetter.toLowerCase());
+    //                 key.style.backgroundColor = "rgb(110, 170, 100)";
+    //                 key.style.borderColor = "rgb(110, 170, 100)";
+    //                 key.style.color = "white";
+    //             }
+    //             else if(isGold(keyLetter)) {
+    //                 key.style.backgroundColor = "rgb(200, 180, 90)";
+    //                 key.style.borderColor = "rgb(200, 180, 90)";
+    //                 key.style.color = "white";
+    //             }
+    //             else { //must be gray
+    //                 key.style.backgroundColor = "rgb(120, 124, 126)";
+    //                 key.style.borderColor = "rgb(120, 124, 126)";
+    //                 key.style.color = "white";
+    //             }
+    //         }
+    //     }
+    // }
 
     function isGreen(letter) {
         for(var r = 1; r <= currentGuessNum; r++) {
