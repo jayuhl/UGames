@@ -45,66 +45,65 @@
         console.log("PROCESSING KEY: " + keyNum);
         //Enter a letter
         if(!gameOver) {
-            if(!gameOver && currentGuessNum <= numGuesses) {
-                if(keyNum >= 49 && keyNum <= 52) {
-                    document.getElementById("alert").innerHTML = "";
-                    hidePopup();
-                    if(document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML == "") {
-                        document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = String.fromCharCode(keyNum);
-                        document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "#565758";
-                        currentEntry += String.fromCharCode(keyNum);
-                    }
-                    if(currentSquare < numGuesses) {
-                        currentSquare++;
-                    }
+            if(keyNum >= 49 && keyNum <= 52) {
+                document.getElementById("alert").innerHTML = "";
+                hidePopup();
+                if(document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML == "") {
+                    document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = String.fromCharCode(keyNum);
+                    document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "#565758";
+                    currentEntry += String.fromCharCode(keyNum);
                 }
-                //Remove a number
-                if(keyNum == 8) {
-                    document.getElementById("alert").innerHTML = "";
-                    hidePopup();
-                    if(currentSquare > 1) {
-                        if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
-                            document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = "";
-                            document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "rgb(200, 200, 200)";
-                        }
-                        else {
-                            document.getElementById(currentGuessNum + "-" + (currentSquare-1)).innerHTML = "";
-                            document.getElementById(currentGuessNum + "-" + (currentSquare-1)).style.borderColor = "rgb(200, 200, 200)";
-                            if(currentSquare > 1) {
-                                currentSquare--;
-                            }
-                        }
-                        currentEntry = currentEntry.slice(0, -1);
-                    }
+                if(currentSquare < numGuesses) {
+                    currentSquare++;
                 }
-                //Submit code guess
-                if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
-                    document.getElementById("alert").innerHTML = "";
-                    //     updateTileColors(currentEntry, currentGuessNum);
-                        //updateKeyboardColors();
-                        //check for game over
-                        checkWin();
-                        checkLose();
-                    if(!gameOver) {
-                            //prepare for next word
-                            currentGuessNum++;
-                            currentSquare = 1;
-                            currentEntry = "";
-                        }
+            }
+            //Remove a number
+            if(keyNum == 8) {
+                document.getElementById("alert").innerHTML = "";
+                hidePopup();
+                if(currentSquare > 1) {
+                    if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
+                        document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = "";
+                        document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "rgb(200, 200, 200)";
                     }
                     else {
-                        var message = "Not a valid guess";
-                        document.getElementById("alert").innerHTML = 'Try another guess';
-                        showPopup(message);
-                        console.log(currentEntry);
-                        // console.log("YO!");
+                        document.getElementById(currentGuessNum + "-" + (currentSquare-1)).innerHTML = "";
+                        document.getElementById(currentGuessNum + "-" + (currentSquare-1)).style.borderColor = "rgb(200, 200, 200)";
+                        if(currentSquare > 1) {
+                            currentSquare--;
+                        }
                     }
+                    currentEntry = currentEntry.slice(0, -1);
                 }
-                else if(keyNum == 13 && currentEntry.length < codeLength) {
-                    var message = "Not enough numbers";
-                    document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
+            }
+            //Submit code guess
+            if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
+                document.getElementById("alert").innerHTML = "";
+                //     updateTileColors(currentEntry, currentGuessNum);
+                    //updateKeyboardColors();
+                    //check for game over
+                    checkWin();
+                    checkLose();
+                    if(!gameOver) {
+                        //prepare for next word
+                        currentGuessNum++;
+                        currentSquare = 1;
+                        currentEntry = "";
+                    }
+                // }
+                else {
+                    var message = "Not a valid guess";
+                    document.getElementById("alert").innerHTML = 'Try another guess';
                     showPopup(message);
+                    console.log(currentEntry);
+                    // console.log("YO!");
                 }
+            }
+            else if(keyNum == 13 && currentEntry.length < codeLength) {
+                var message = "Not enough numbers";
+                document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
+                showPopup(message);
+            }
         }
         else {
             // document.getElementById("alert").innerHTML = "REPLAY";
