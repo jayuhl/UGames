@@ -86,7 +86,7 @@
             document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "#565758";
             currentEntry += String.fromCharCode(keyNum);
         }
-        if(currentSquare < numGuesses) {
+        if(currentSquare < codeLength) {
             currentSquare++;
             console.log("currentSquare = " + currentSquare);
         }
