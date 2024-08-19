@@ -27,6 +27,16 @@
             // console.log("FROM PHYSICAL KEYBOARD: " + e.keyCode);
             registerKeyPress(e.keyCode);
         };
+
+    var currentTile = document.getElementById("pegs1-1");
+    currentTile.style.backgroundColor = "red";
+    currentTile = document.getElementById("pegs1-2");
+    currentTile.style.backgroundColor = "yellow";
+    currentTile = document.getElementById("pegs1-3");
+    currentTile.style.backgroundColor = "green";
+    currentTile = document.getElementById("pegs1-4");
+    currentTile.style.backgroundColor = "blue";
+        
     }
 
     //Respond to virtual keyboard key press
@@ -228,6 +238,7 @@
         }
     }
 
+    
     // function updateKeyboardColors() {
     //     // var keys = document.getElementsByClassName("letters");
     //     for(var r=1; r <= currentGuessNum; r++) {
