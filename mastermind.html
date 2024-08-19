@@ -306,8 +306,8 @@
         var textColor = "black";
 
         //reset the board tiles
-        for(var r = 1; r <= 6; r++) {
-            for(var c = 1; c <= 5; c++) {
+        for(var r = 1; r <= numGuesses; r++) {
+            for(var c = 1; c <= codeLength; c++) {
 
                 var currentTile = document.getElementById(r + "-" + c);
                 
