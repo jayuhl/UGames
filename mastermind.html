@@ -266,21 +266,28 @@
       //Identify GREEN locations with "*"
       for(var i=0; i < guess.length; i++)
          if(guess.charAt(i) == win.charAt(i)) {
-            guess = guess.substring(0, i) + "*" + guess.substring(i+1);
-            win = win.substring(0, i) + "*" + win.substring(i+1);
+            guess = guess.substring(0, i) + "A" + guess.substring(i+1);
+            win = win.substring(0, i) + "A" + win.substring(i+1);
          }
       
       //Identify GOLD locations with "+"
       for(var i=0; i < guess.length; i++) {
-         if(guess.charAt(i) != '*') {// && guess.charAt(i) != '+') {
+         if(guess.charAt(i) != 'A') {// && guess.charAt(i) != '+') {
             var index = win.indexOf(guess.charAt(i));
             if(index >= 0) {
-               guess = guess.substring(0, i) + "+" + guess.substring(i+1);            
-               win = win.substring(0, index) + "+" + win.substring(index+1);
+               guess = guess.substring(0, i) + "B" + guess.substring(i+1);            
+               win = win.substring(0, index) + "B" + win.substring(index+1);
             }
          }
       }
-     console.log("CURRENT VALUES: " + guess + " " + win);
+      
+      var codeForPegs = "";
+      for(int i = 0; i < guess.length; i++)
+        if(guess.charAt(i) == 'A' || guess.charAt(i) == 'B')
+            codeForPegs += guess.charAt(i);
+      
+      console.log("CURRENT VALUES: " + guess + " " + win + " " + codeForPegs);
+      
       return guess;   
    }
 
