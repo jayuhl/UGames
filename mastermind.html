@@ -11,7 +11,7 @@
     let gameOver = false;
     let random = "";
         // Math.round(Math.random()*(words.length-1));
-    let winCode = "1111";
+    let winCode = "1234";
     console.log(winCode);
 
     let currentGuessNum = 1;
@@ -339,7 +339,7 @@
       
       console.log("CURRENT VALUES: " + guess + " " + win + " " + codeForPegs + " " + sorted);
       
-      return guess;   
+      return sorted;   
    }
 
    function resetGame()
