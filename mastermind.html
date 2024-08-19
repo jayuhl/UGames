@@ -11,7 +11,7 @@
     let gameOver = false;
     let random = "";
         // Math.round(Math.random()*(words.length-1));
-    let winCode = "1234";
+    let winCode = "1111";
     console.log(winCode);
 
     let currentGuessNum = 1;
@@ -28,14 +28,14 @@
             registerKeyPress(e.keyCode);
         };
 
-    var currentTile = document.getElementById("pegs1-1");
-    currentTile.style.backgroundColor = "red";
-    currentTile = document.getElementById("pegs1-2");
-    currentTile.style.backgroundColor = "yellow";
-    currentTile = document.getElementById("pegs1-3");
-    currentTile.style.backgroundColor = "green";
-    currentTile = document.getElementById("pegs1-4");
-    currentTile.style.backgroundColor = "blue";
+    // var currentTile = document.getElementById("pegs1-1");
+    // currentTile.style.backgroundColor = "red";
+    // currentTile = document.getElementById("pegs1-2");
+    // currentTile.style.backgroundColor = "yellow";
+    // currentTile = document.getElementById("pegs1-3");
+    // currentTile.style.backgroundColor = "green";
+    // currentTile = document.getElementById("pegs1-4");
+    // currentTile.style.backgroundColor = "blue";
         
     }
 
@@ -216,6 +216,7 @@
 
     function updatePegColors(currentEntry, currentGuessNum) {
         var colorCodes = getGuessAsColorCodes(currentEntry);
+        console.log("USING CODE FOR PEGS: " + colorCodes);
         for(var i = 0; i < colorCodes.length; i++) {
             var currentSquare = colorCodes.substring(i, i+1);
             var currentTile = document.getElementById("pegs" + currentGuessNum + "-" + (i+1));
