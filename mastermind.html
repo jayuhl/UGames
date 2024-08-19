@@ -42,7 +42,7 @@
 
     //React to a key press (physical or virtual)
     function registerKeyPress(keyNum) {
-        console.log("PROCESSING KEY: " + keyNum);
+        console.log("PROCESSING KEY: " + keyNum + " is game over: " + gameOver);
         //Enter a letter
         if(!gameOver) {
             if(keyNum >= 49 && keyNum <= 52) {
@@ -552,6 +552,7 @@
         grid-column-gap: 4px;
         grid-row-gap: 4px;
         padding: 4px 0px 0px 6px;
+        border-width: 0px;
     }
     
     /* popup stuff */
