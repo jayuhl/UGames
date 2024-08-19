@@ -171,6 +171,7 @@
             else message = "Phew!";
             // document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
+            playAgainButton.style.display = "block";
             setWinColors();
             showPopup(message);
         }
@@ -183,6 +184,7 @@
             var message = winCode;
             document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
+            playAgainButton.style.display = "block";
             showPopup(message);
         }
     }
@@ -398,6 +400,8 @@
             keys[i].style.backgroundColor = "rgb(220,220,220)";
             keys[i].style.borderColor = "rgb(220,220,220)";
         }
+       var playAgainButton = document.getElementById("play-again");
+       playAgainButton.style.display = "none";
     }
 
     function showPopup(message) {
@@ -608,6 +612,7 @@
 
     #play-again {
         width: 100px;
+        display: none;
     }
     
     /* popup stuff */
