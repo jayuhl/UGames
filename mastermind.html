@@ -28,15 +28,19 @@
             registerKeyPress(e.keyCode);
         };
 
-    // var currentTile = document.getElementById("pegs1-1");
-    // currentTile.style.backgroundColor = "red";
-    // currentTile = document.getElementById("pegs1-2");
-    // currentTile.style.backgroundColor = "yellow";
-    // currentTile = document.getElementById("pegs1-3");
-    // currentTile.style.backgroundColor = "green";
-    // currentTile = document.getElementById("pegs1-4");
-    // currentTile.style.backgroundColor = "blue";
-        
+        // var currentTile = document.getElementById("pegs1-1");
+        // currentTile.style.backgroundColor = "red";
+        // currentTile = document.getElementById("pegs1-2");
+        // currentTile.style.backgroundColor = "yellow";
+        // currentTile = document.getElementById("pegs1-3");
+        // currentTile.style.backgroundColor = "green";
+        // currentTile = document.getElementById("pegs1-4");
+        // currentTile.style.backgroundColor = "blue";
+
+        var message = "Break the code!";
+        showPopup(message, 'black');
+        var popup = document.getElementById("myPopup");
+        popup.style.visibility = 'visible';
     }
 
     //Respond to virtual keyboard key press
@@ -341,8 +345,6 @@
 
        var message = "Break the code!";
        showPopup(message, 'black');
-       var popup = document.getElementById("myPopup");
-       popup.style.visibility = 'visible';
     }
 
     function showPopup(message, color) {
