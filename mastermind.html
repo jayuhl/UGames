@@ -464,15 +464,16 @@
                 <td class="keyboard-key number-key" id="2" onclick="keyboard('50')">2</td>
                 <td class="keyboard-key number-key" id="3" onclick="keyboard('51')">3</td>
                 <td class="keyboard-key number-key" id="4" onclick="keyboard('52')">4</td>
+                <td class="keyboard-key" id="delete-key" onclick="keyboard('delete')">&#x232B;</td>
             </tr>
         </table>
     </div>
     <div class="container d-flex justify-content-center">
         <table>
             <tr>
-                <td class="keyboard-key" id="delete-key" onclick="keyboard('delete')">&#x232B;</td>
                 <td class="keyboard-key" id="spacer-key"></td>
                 <td class="keyboard-key" id="enter-key" onclick="keyboard('enter')">&#9166</td>
+                <td class="keyboard-key" id="spacer-key"></td>
             </tr>
         </table>
     </div>
@@ -550,8 +551,8 @@
     }
     
     .keyboard-key {
-        width: 72px;
-        height: 64px;
+        width: 75px;
+        height:56px;
         background-color: rgb(220, 220, 220);
         border-radius: 5px;
         border: 2px solid rgb(180, 180, 180);
@@ -568,7 +569,7 @@
     }
 
     #enter-key {
-        width: 150px;
+        width: 160px;
     }
 
     #spacer-key {
