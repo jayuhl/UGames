@@ -285,19 +285,22 @@
       for(var i = 0; i < guess.length; i++)
         if(guess.charAt(i) == 'A' || guess.charAt(i) == 'B')
             codeForPegs += guess.charAt(i);
-      //Sort the code list so it displays in the desired order
-      for(var i=0; i < codeForPegs.length-1; i++)
-      {
-          var min = i;
-          for(var j = i + 1; j < codeForPegs.length; j++)
-              if(codeForPegs.charAt(j) < codeForPegs.charAt(min)
-                 min = j;
-          var charAti = codeForPegs.substring(i, i+1);
-          var charAtmin = codeForPegs.substring(min, min+1);
-          codeForPegs = codeForPegs.substring(0, i) + charAtmin + codeForPegs.substring(i+1, min) + charAti + codeForPegs.substring(min+1);
-      }
       
-      console.log("CURRENT VALUES: " + guess + " " + win + " " + codeForPegs);
+      //Sort the code list so it displays in the desired order
+      // for(var i=0; i < codeForPegs.length-1; i++)
+      // {
+      //     var min = i;
+      //     for(var j = i + 1; j < codeForPegs.length; j++)
+      //         if(codeForPegs.charAt(j) < codeForPegs.charAt(min)
+      //            min = j;
+      //     var charAti = codeForPegs.substring(i, i+1);
+      //     var charAtmin = codeForPegs.substring(min, min+1);
+      //     codeForPegs = codeForPegs.substring(0, i) + charAtmin + codeForPegs.substring(i+1, min) + charAti + codeForPegs.substring(min+1);
+      // }
+      
+      var sorted = codeForPegs.split('').sort().join('');
+      
+      console.log("CURRENT VALUES: " + guess + " " + win + " " + codeForPegs + " " + sorted);
       
       return guess;   
    }
