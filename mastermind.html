@@ -24,7 +24,7 @@
             // console.log("FROM PHYSICAL KEYBOARD: " + e.keyCode);
             registerKeyPress(e.keyCode);
         };
-
+        
         // var currentTile = document.getElementById("pegs1-1");
         // currentTile.style.backgroundColor = "red";
         // currentTile = document.getElementById("pegs1-2");
@@ -36,8 +36,8 @@
 
         var message = "Break the code!";
         showPopup(message, 'black');
-        var popup = document.getElementById("myPopup");
-        popup.style.visibility = 'visible';
+        // var popup = document.getElementById("myPopup");
+        // popup.style.visibility = 'visible';
     }
 
     //Respond to virtual keyboard key press
@@ -166,8 +166,7 @@
             else message = "Phew!";
             // document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
-            var playAgainButton = document.getElementById("play-again");
-            playAgainButton.style.display = "block";
+            showPlayAgainButton();
             setWinColors();
             showPopup(message, 'green');
         }
@@ -180,8 +179,7 @@
             var message = "The code was: " + winCode;
             // document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
-            var playAgainButton = document.getElementById("play-again");
-            playAgainButton.style.display = "block";
+            showPlayAgainButton();
             setLoseColors();
             showPopup(message, 'red');
         }
@@ -296,6 +294,20 @@
       return sorted;   
    }
 
+   function showPlayAgainButton() {
+        var playAgainButton = document.getElementById("enter-key");
+        playAgainButton.style.display = "none";
+        var playAgainButton = document.getElementById("play-again");
+        playAgainButton.style.display = "block";
+   }
+
+   function showEnterButton() {
+        var playAgainButton = document.getElementById("play-again");
+        playAgainButton.style.display = "none";
+        var playAgainButton = document.getElementById("enter-key");
+        playAgainButton.style.display = "block";
+   }
+
    function resetGame()
    {
         gameOver = false;
@@ -343,9 +355,9 @@
             keys[i].style.backgroundColor = "rgb(220,220,220)";
             keys[i].style.borderColor = "rgb(220,220,220)";
         }
-       var playAgainButton = document.getElementById("play-again");
-       playAgainButton.style.display = "none";
 
+       showEnterButton();
+       
        var message = "Break the code!";
        showPopup(message, 'black');
     }
@@ -552,8 +564,8 @@
     }
     
     .keyboard-key {
-        width: 64px;
-        height:56px;
+        width: 80px;
+        height:50px;
         background-color: rgb(220, 220, 220);
         border-radius: 5px;
         border: 2px solid rgb(180, 180, 180);
@@ -564,7 +576,7 @@
     }
     
     #play-again {
-        width: 176px;
+        width: 160px;
         padding: 18px 0px;
         display: none;
     }
