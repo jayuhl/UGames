@@ -79,7 +79,7 @@
     function setWinCode() {
         winCode = "";
         for(var i = 0; i < codeLength; i++)
-            winCode += Math.round(Math.random()*4);
+            winCode += Math.round(Math.random()*3) + 1;
         console.log("winCode = " + winCode);
     }
     
