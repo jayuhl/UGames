@@ -171,6 +171,7 @@
             else message = "Phew!";
             // document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
+            var playAgainButton = document.getElementById("play-again");
             playAgainButton.style.display = "block";
             setWinColors();
             showPopup(message);
@@ -184,6 +185,7 @@
             var message = winCode;
             document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
+            var playAgainButton = document.getElementById("play-again");
             playAgainButton.style.display = "block";
             showPopup(message);
         }
