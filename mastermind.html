@@ -67,19 +67,6 @@
                 submitCurrentGuess();
             }
         }
-        // else {
-        //     var message = "Not a valid guess";
-        //     document.getElementById("alert").innerHTML = 'Try another guess';
-        //     showPopup(message);
-        //     console.log(currentEntry);
-        //     // console.log("YO!");
-        // }
-        // else if(keyNum == 13 && currentEntry.length < codeLength) {
-        //     var message = "Not enough numbers";
-        //     document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
-        //     showPopup(message);
-        // }
-        // }
         else {
             // document.getElementById("alert").innerHTML = "REPLAY";
             if(keyNum == 187) {
@@ -267,35 +254,7 @@
             // currentTile.style.border = borderColor;
         }
     }
-
     
-    // function updateKeyboardColors() {
-    //     // var keys = document.getElementsByClassName("letters");
-    //     for(var r=1; r <= currentGuessNum; r++) {
-    //         for(var c=1; c <= 5; c++) {
-    //             var keyLetter = document.getElementById(r+"-"+c).innerHTML;
-    //             // console.log("Check green: " + r + "-" + c + ": " + keyLetter + "... Am I in the number? " + winCode.indexOf(keyLetter))
-    //             var key = document.getElementById(keyLetter.toLowerCase());
-    //             if(isGreen(keyLetter)) {
-    //                 // console.log("Key is: " + keyLetter.toLowerCase());
-    //                 key.style.backgroundColor = "rgb(110, 170, 100)";
-    //                 key.style.borderColor = "rgb(110, 170, 100)";
-    //                 key.style.color = "white";
-    //             }
-    //             else if(isGold(keyLetter)) {
-    //                 key.style.backgroundColor = "rgb(200, 180, 90)";
-    //                 key.style.borderColor = "rgb(200, 180, 90)";
-    //                 key.style.color = "white";
-    //             }
-    //             else { //must be gray
-    //                 key.style.backgroundColor = "rgb(120, 124, 126)";
-    //                 key.style.borderColor = "rgb(120, 124, 126)";
-    //                 key.style.color = "white";
-    //             }
-    //         }
-    //     }
-    // }
-
     function isGreen(letter) {
         for(var r = 1; r <= currentGuessNum; r++) {
             for(var c = 1; c <= winCode.length; c++) {
@@ -306,11 +265,7 @@
         }
         return false;
     }
-
-    function isGold(letter) {
-        return isGuessed(letter) && isInWord(letter);
-    }
-
+    
     function isGuessed(letter) {
         for(var r = 1; r <= currentGuessNum; r++) {
             for(var c = 1; c <= winCode.length; c++) {
@@ -321,11 +276,7 @@
         }
         return false;
     }
-
-    function isInWord(letter) {
-        return winCode.indexOf(letter) >= 0;
-    }
-
+    
     function getGuessAsColorCodes(guess)
     {
       var win = winCode;
@@ -352,18 +303,6 @@
         if(guess.charAt(i) == 'A' || guess.charAt(i) == 'B')
             codeForPegs += guess.charAt(i);
       
-      //Sort the code list so it displays in the desired order
-      // for(var i=0; i < codeForPegs.length-1; i++)
-      // {
-      //     var min = i;
-      //     for(var j = i + 1; j < codeForPegs.length; j++)
-      //         if(codeForPegs.charAt(j) < codeForPegs.charAt(min)
-      //            min = j;
-      //     var charAti = codeForPegs.substring(i, i+1);
-      //     var charAtmin = codeForPegs.substring(min, min+1);
-      //     codeForPegs = codeForPegs.substring(0, i) + charAtmin + codeForPegs.substring(i+1, min) + charAti + codeForPegs.substring(min+1);
-      // }
-      
       var sorted = codeForPegs.split('').sort().join('');
       
       console.log("CURRENT VALUES: " + guess + " " + win + " " + codeForPegs + " " + sorted);
@@ -382,7 +321,7 @@
         currentSquare = 1;
         currentEntry = "";
 
-        hidePopup();
+        // hidePopup();
 
         var message = "Break the code!";
         showPopup(message, 'black');
