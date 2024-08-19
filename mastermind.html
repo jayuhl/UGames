@@ -64,7 +64,7 @@
             }
             //Submit code guess
             if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
-                checkCurrentGuess();
+                submitCurrentGuess();
             }
         }
         // else {
@@ -124,7 +124,7 @@
         }
     }
 
-    function checkCurrentGuess() {
+    function submitCurrentGuess() {
         document.getElementById("alert").innerHTML = "";
         updateTileColors(currentEntry, currentGuessNum);
         updatePegColors(currentEntry, currentGuessNum);
@@ -179,7 +179,7 @@
     }
 
     function checkLose() {
-        if(!gameOver && currentGuessNum > numGuesses) {
+        if(!gameOver && currentGuessNum >= numGuesses) {
             // console.log("hello");
             // var message = "You lose! The number was <em>" + winCode + "</em>";
             var message = winCode;
