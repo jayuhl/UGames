@@ -182,11 +182,12 @@
         if(!gameOver && currentGuessNum >= numGuesses) {
             // console.log("hello");
             // var message = "You lose! The number was <em>" + winCode + "</em>";
-            var message = winCode;
-            document.getElementById("alert").innerHTML = '+ to play again';
+            var message = "The code was: " + winCode;
+            // document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
             var playAgainButton = document.getElementById("play-again");
             playAgainButton.style.display = "block";
+            setLoseColors();
             showPopup(message);
         }
     }
@@ -215,6 +216,23 @@
 
             //Assign default colors
             var fillColor = "green";
+            var borderColor = "#aaa";
+            var textColor = "white";
+            
+            //Paint the identified colors
+            currentTile.style.backgroundColor = fillColor;
+            currentTile.style.borderColor = borderColor;
+            currentTile.style.color = textColor;
+        }
+    }
+
+    function setLoseColors() {
+        for(var i = 1; i <= 4; i++) {
+
+            var currentTile = document.getElementById(currentGuessNum + "-" + i);
+
+            //Assign default colors
+            var fillColor = "red";
             var borderColor = "#aaa";
             var textColor = "white";
             
@@ -644,7 +662,8 @@
         visibility: hidden;
         font-size: 12px;
         font-weight: 600;
-        background-color: rgb(0, 0, 0);
+/*         background-color: rgb(0, 0, 0); */
+        background-color: red;
         color: #fff;
         /* text-align: center; */
         border-radius: 4px;
