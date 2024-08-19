@@ -533,18 +533,18 @@
     <div class="container d-flex justify-content-center mt-3">
         <table>
             <tr>
-                <td class="letters" id="q" onclick="keyboard('49')">1</td>
-                <td class="letters" id="w" onclick="keyboard('50')">2</td>
-                <td class="letters" id="e" onclick="keyboard('51')">3</td>
-                <td class="letters" id="r" onclick="keyboard('52')">4</td>
+                <td class="keyboard-key number-key" id="1" onclick="keyboard('49')">1</td>
+                <td class="keyboard-key number-key" id="2" onclick="keyboard('50')">2</td>
+                <td class="keyboard-key number-key" id="3" onclick="keyboard('51')">3</td>
+                <td class="keyboard-key number-key" id="4" onclick="keyboard('52')">4</td>
             </tr>
         </table>
     </div>
     <div class="container d-flex justify-content-center">
         <table>
             <tr>
-                <td class="letters" id="delete" onclick="keyboard('delete')">&#x232B;</td>
-                <td class="letters P" id="enter" onclick="keyboard('enter')">&#9166</td>
+                <td class="keyboard-key" id="delete" onclick="keyboard('delete')">&#x232B;</td>
+                <td class="keyboard-key" id="enter" onclick="keyboard('enter')">&#9166</td>
             </tr>
         </table>
     </div>
@@ -552,7 +552,7 @@
     <div class="container d-flex justify-content-center">
         <table>
             <tr>
-                <td class="letters P" id="play-again" onclick="keyboard('187')">Play Again</td>
+                <td class="keyboard-key" id="play-again" onclick="keyboard('187')">Play Again</td>
             </tr>
         </table>
     </div>
@@ -595,12 +595,12 @@
         font-weight: bold;
         font-size: 30px;
     }
-    .letters {
+    .keyboard-key {
         width: 40px;
         height: 50px;
         background-color: rgb(220, 220, 220);
         border-radius: 5px;
-        border: 2px solid rgb(220, 220, 220);
+        border: 2px solid rgb(200, 200, 200);
         color: #000;
         text-align: center;
         font-weight: bold;
