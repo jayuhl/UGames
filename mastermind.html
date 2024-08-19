@@ -144,7 +144,7 @@
             else {
                 var message = "Not a valid guess";
                 document.getElementById("alert").innerHTML = 'Try another guess';
-                showPopup(message);
+                showPopup(message, 'red');
                 console.log(currentEntry);
                 console.log("YO!");
             }
@@ -152,7 +152,7 @@
         else {
             var message = "Not enough numbers";
             document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
-            showPopup(message);
+            showPopup(message, 'red');
         }
     }
 
@@ -174,7 +174,7 @@
             var playAgainButton = document.getElementById("play-again");
             playAgainButton.style.display = "block";
             setWinColors();
-            showPopup(message);
+            showPopup(message, 'green');
         }
     }
 
@@ -188,7 +188,7 @@
             var playAgainButton = document.getElementById("play-again");
             playAgainButton.style.display = "block";
             setLoseColors();
-            showPopup(message);
+            showPopup(message, 'red');
         }
     }
     
@@ -384,7 +384,10 @@
 
         hidePopup();
 
-        document.getElementById("alert").innerHTML = "Welcome to Mastermind";
+        var message = "Break the code!";
+        showPopup(message, 'black');
+
+        // document.getElementById("alert").innerHTML = "Welcome to Mastermind";
 
         //Assign default colors
         // var fillColor = "#fff";
@@ -424,10 +427,11 @@
        playAgainButton.style.display = "none";
     }
 
-    function showPopup(message) {
+    function showPopup(message, color) {
         var popup = document.getElementById("myPopup");
         popup.innerHTML = message;
         popup.style.visibility = 'visible';
+        popup.style.backgroundColor = color;
         // popup.classList.toggle('show'); explore a fade
     }
 
@@ -548,7 +552,7 @@
             </tr>
         </table>
     </div>
-    <p class="text-center mt-3" id="alert">Welcome to Mastermind</p>
+<!--     <p class="text-center mt-3" id="alert">Welcome to Mastermind</p> -->
     <div class="container d-flex justify-content-center">
         <table>
             <tr>
@@ -596,11 +600,11 @@
         font-size: 30px;
     }
     .keyboard-key {
-        width: 60px;
-        height: 60px;
+        width: 72px;
+        height: 72px;
         background-color: rgb(220, 220, 220);
         border-radius: 5px;
-        border: 2px solid rgb(200, 200, 200);
+        border: 2px solid rgb(180, 180, 180);
         color: #000;
         text-align: center;
         font-weight: bold;
