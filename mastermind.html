@@ -40,11 +40,11 @@
     }
 
     //Respond to virtual keyboard key press
-    function keyboard(letter) {
-        var keyValue = 0;
-        if(letter == 'enter') keyValue = 13;
-        else if(letter == 'delete') keyValue = 8;
-        else keyValue = letter.charCodeAt(0)-32;
+    function keyboard(input) {
+        var keyValue = input;
+        if(input == 'enter') keyValue = 13;
+        else if(input == 'delete') keyValue = 8;
+        // else keyValue = input.charCodeAt(0)-32;
 
         // console.log("FROM VIRTUAL KEYBOARD: " + letter + " " + keyValue);
         registerKeyPress(keyValue);
