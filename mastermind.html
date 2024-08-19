@@ -64,15 +64,13 @@
                 deleteLastNumber();
             }
             //Submit code guess
-            if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
+            if(keyNum == 13 && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "")
                 submitCurrentGuess();
-            }
         }
         else {
             // document.getElementById("alert").innerHTML = "REPLAY";
-            if(keyNum == 187) {
+            if(keyNum == 13)  //187 is the old replay value using the + character
                 resetGame();
-            }
         }
     }
 
@@ -296,20 +294,12 @@
 
    function showPlayAgainButton() {
         var enterButton = document.getElementById("enter-key");
-        enterButton.style.display = "none";
-        enterButton.style.height = "0px";
-        var playAgainButton = document.getElementById("play-again");
-        playAgainButton.style.display = "block";
-        playAgainButton.style.height = "80px";
+        enterButton.style.innerHTML = "Play Again";
    }
 
    function showEnterButton() {
-        var playAgainButton = document.getElementById("play-again");
-        playAgainButton.style.display = "none";
-        playAgainButton.style.height = "0px";
         var enterButton = document.getElementById("enter-key");
-        enterButton.style.display = "block";
-        enterButton.style.height = "80px";
+        enterButton.style.innerHTML = "Enter";
    }
 
    function resetGame()
@@ -496,13 +486,13 @@
     </div>
 <!--  A MESSAGE FIELD THAT WAS ELIMINATED IN LIEU OF THE POPUP MESSAGE    -->
 <!--     <p class="text-center mt-3" id="alert">Welcome to Mastermind</p> -->
-    <div class="container d-flex justify-content-center">
-        <table>
-            <tr>
-                <td class="keyboard-key" id="play-again" onclick="keyboard('187')">Play Again</td>
-            </tr>
-        </table>
-    </div>
+<!--     <div class="container d-flex justify-content-center"> -->
+<!--         <table> -->
+<!--             <tr> -->
+<!--                 <td class="keyboard-key" id="play-again" onclick="keyboard('187')">Play Again</td> -->
+<!--             </tr> -->
+<!--         </table> -->
+<!--     </div> -->
 
 
 </body>
@@ -579,11 +569,11 @@
         font-size: 20px;
     }
     
-    #play-again {
-        width: 160px;
-        padding: 18px 0px;
-        display: none;
-    }
+/*     #play-again { */
+/*         width: 160px; */
+/*         padding: 18px 0px; */
+/*         display: none; */
+/*     } */
 
     #enter-key {
         width: 160px;
