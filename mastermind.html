@@ -89,7 +89,7 @@
     }
     
     function addNumberToCurrentGuess(keyNum) {
-        document.getElementById("alert").innerHTML = "";
+        // document.getElementById("alert").innerHTML = "";
         hidePopup();
         var currentSlot = document.getElementById(currentGuessNum + "-" + currentSquare);
         
@@ -106,7 +106,7 @@
     }
 
     function deleteLastNumber() {
-        document.getElementById("alert").innerHTML = "";
+        // document.getElementById("alert").innerHTML = "";
         hidePopup();
         if(currentSquare > 1) {
             if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
@@ -125,7 +125,7 @@
     }
 
     function submitCurrentGuess() {
-        document.getElementById("alert").innerHTML = "";
+        // document.getElementById("alert").innerHTML = "";
         updateTileColors(currentEntry, currentGuessNum);
         updatePegColors(currentEntry, currentGuessNum);
         //updateKeyboardColors();
@@ -143,7 +143,7 @@
             }
             else {
                 var message = "Not a valid guess";
-                document.getElementById("alert").innerHTML = 'Try another guess';
+                // document.getElementById("alert").innerHTML = 'Try another guess';
                 showPopup(message, 'red');
                 console.log(currentEntry);
                 console.log("YO!");
@@ -151,7 +151,7 @@
         }
         else {
             var message = "Not enough numbers";
-            document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
+            // document.getElementById("alert").innerHTML = "Not enough numbers " + winCode;
             showPopup(message, 'red');
         }
     }
@@ -552,6 +552,7 @@
             </tr>
         </table>
     </div>
+<!--  A MESSAGE FIELD THAT WAS ELIMINATED IN LIEU OF THE POPUP MESSAGE    -->
 <!--     <p class="text-center mt-3" id="alert">Welcome to Mastermind</p> -->
     <div class="container d-flex justify-content-center">
         <table>
