@@ -184,29 +184,15 @@
     }
     
     function updateTileColors(currentEntry, currentGuessNum) {
-        var colorCodes = getGuessAsColorCodes(currentEntry);
-        for(var i = 0; i < colorCodes.length; i++) {
-
-            var currentSquare = colorCodes.substring(i, i+1);
-            // console.log("updateTileColors:" + colorCodes.substring(i, i+1));
+        for(var i = 1; i <= 4; i++) {
 
             var currentTile = document.getElementById(currentGuessNum + "-" + (i+1));
 
             //Assign default colors
-            var fillColor = "rgb(220,220,220)";
+            var fillColor = "cyan";
             var borderColor = "rgb(120,124,126)";
             var textColor = "#fff";
-
-            //Determine GREENS and GOLDS
-            if(currentSquare == '+') {
-                fillColor = "rgb(200, 180, 90)"; //gold
-                borderColor = "rgb(200, 180, 90)";
-            }
-            else if(currentSquare == '*') {
-                fillColor = "rgb(110, 170, 100)"; //green
-                borderColor = "rgb(110, 170, 100)";
-            }
-
+            
             //Paint the identified colors
             currentTile.style.backgroundColor = fillColor;
             currentTile.style.border = borderColor;
