@@ -295,17 +295,21 @@
    }
 
    function showPlayAgainButton() {
-        var playAgainButton = document.getElementById("enter-key");
-        playAgainButton.style.display = "none";
+        var enterButton = document.getElementById("enter-key");
+        enterButton.style.display = "none";
+        enterButton.style.height = "0px";
         var playAgainButton = document.getElementById("play-again");
         playAgainButton.style.display = "block";
+        playAgainButton.style.height = "80px";
    }
 
    function showEnterButton() {
         var playAgainButton = document.getElementById("play-again");
         playAgainButton.style.display = "none";
-        var playAgainButton = document.getElementById("enter-key");
-        playAgainButton.style.display = "block";
+        playAgainButton.style.height = "0px";
+        var enterButton = document.getElementById("enter-key");
+        enterButton.style.display = "block";
+        enterButton.style.height = "80px";
    }
 
    function resetGame()
@@ -564,8 +568,8 @@
     }
     
     .keyboard-key {
-        width: 80px;
-        height:50px;
+        width: 50px;
+        height:80px;
         background-color: rgb(220, 220, 220);
         border-radius: 5px;
         border: 2px solid rgb(180, 180, 180);
