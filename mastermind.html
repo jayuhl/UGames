@@ -213,24 +213,18 @@
             //Assign default colors
             var fillColor = "#fff";
             var borderColor = "#aaa";
-            var textColor = "#fff";
 
             //Determine peg colora
             if(currentSquare == 'A') { //correct location
                 fillColor = "red";
-                // fillColor = "rgb(200, 180, 90)"; //gold
-                borderColor = "rgb(200, 180, 90)";
             }
             else if(currentSquare == 'B') { //right number, wrong location
-                fillColor = "rgb(110, 20, 40)";
-                // fillColor = "rgb(110, 170, 100)"; //green
-                borderColor = "rgb(110, 170, 100)";
+                fillColor = "green";
             }
 
             //Paint the identified colors
             currentTile.style.backgroundColor = fillColor;
             currentTile.style.border = borderColor;
-            currentTile.style.color = textColor;
         }
     }
 
