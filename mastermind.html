@@ -171,6 +171,7 @@
             else message = "Phew!";
             document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
+            setWinColors();
             showPopup(message);
         }
     }
@@ -198,6 +199,23 @@
             
             //Paint the identified colors
             // currentTile.style.backgroundColor = fillColor;
+            // currentTile.style.border = borderColor;
+            currentTile.style.color = textColor;
+        }
+    }
+
+    function setWinColors() {
+        for(var i = 1; i <= 4; i++) {
+
+            var currentTile = document.getElementById(currentGuessNum + "-" + i);
+
+            //Assign default colors
+            // var fillColor = "green";
+            var borderColor = "cyan";
+            var textColor = "white";
+            
+            //Paint the identified colors
+            currentTile.style.backgroundColor = fillColor;
             // currentTile.style.border = borderColor;
             currentTile.style.color = textColor;
         }
