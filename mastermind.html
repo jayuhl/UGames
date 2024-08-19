@@ -114,6 +114,7 @@
     function checkCurrentGuess() {
         document.getElementById("alert").innerHTML = "";
         updateTileColors(currentEntry, currentGuessNum);
+        updatePegColors(currentEntry, currentGuessNum);
         //updateKeyboardColors();
         if(currentEntry.length == codeLength) {
             if(isValidGuess()) {
@@ -182,7 +183,7 @@
             var currentTile = document.getElementById(currentGuessNum + "-" + (i+1));
 
             //Assign default colors
-            var fillColor = "rgb(120,124,126)";
+            var fillColor = "rgb(220,220,220)";
             var borderColor = "rgb(120,124,126)";
             var textColor = "#fff";
 
@@ -192,6 +193,34 @@
                 borderColor = "rgb(200, 180, 90)";
             }
             else if(currentSquare == '*') {
+                fillColor = "rgb(110, 170, 100)"; //green
+                borderColor = "rgb(110, 170, 100)";
+            }
+
+            //Paint the identified colors
+            currentTile.style.backgroundColor = fillColor;
+            currentTile.style.border = borderColor;
+            currentTile.style.color = textColor;
+        }
+    }
+
+    function updatePegColors(currentEntry, currentGuessNum) {
+        var colorCodes = getGuessAsColorCodes(currentEntry);
+        for(var i = 0; i < colorCodes.length; i++) {
+            var currentSquare = colorCodes.substring(i, i+1);
+            var currentTile = document.getElementById("pegs" + currentGuessNum + "-" + (i+1));
+
+            //Assign default colors
+            var fillColor = "rgb(220,220,220)";
+            var borderColor = "rgb(120,124,126)";
+            var textColor = "#fff";
+
+            //Determine GREENS and GOLDS
+            if(currentSquare == 'A') {
+                fillColor = "rgb(200, 180, 90)"; //gold
+                borderColor = "rgb(200, 180, 90)";
+            }
+            else if(currentSquare == 'B') {
                 fillColor = "rgb(110, 170, 100)"; //green
                 borderColor = "rgb(110, 170, 100)";
             }
