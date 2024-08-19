@@ -169,7 +169,7 @@
             else if(currentGuessNum == 4) message = "Splendid!";
             else if(currentGuessNum == 5) message = "Great!";
             else message = "Phew!";
-            document.getElementById("alert").innerHTML = '+ to play again';
+            // document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
             setWinColors();
             showPopup(message);
@@ -604,6 +604,10 @@
         grid-row-gap: 4px;
         padding: 6px 4px 8px 4px;
         border-width: 0px;
+    }
+
+    #play-again {
+        width: 100px;
     }
     
     /* popup stuff */
