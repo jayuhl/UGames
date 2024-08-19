@@ -520,12 +520,19 @@
         <table>
             <tr>
                 <td class="letters" id="delete" onclick="keyboard('delete')">&#x232B;</td>
-                <td class="letters P" id="enter"  onclick="keyboard('enter')">&#9166</td>
+                <td class="letters P" id="enter" onclick="keyboard('enter')">&#9166</td>
             </tr>
         </table>
     </div>
     <p class="text-center mt-3" id="alert">Welcome to Mastermind</p>
-    <button onclick="reset()">Play Again</button>
+    <div class="container d-flex justify-content-center">
+        <table>
+            <tr>
+                <td class="letters P" id="play-again" onclick="keyboard('+')">Play Again</td>
+            </tr>
+        </table>
+    </div>
+
 
 </body>
 </html>
