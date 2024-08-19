@@ -91,9 +91,12 @@
     function addNumberToCurrentGuess(keyNum) {
         document.getElementById("alert").innerHTML = "";
         hidePopup();
-        if(document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML == "") {
-            document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = String.fromCharCode(keyNum);
-            document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "#565758";
+        var currentSlot = document.getElementById(currentGuessNum + "-" + currentSquare);
+        
+        if(currentSlot.innerHTML == "") {
+            currentSlot.innerHTML = String.fromCharCode(keyNum);
+            currentSlot.style.borderColor = "#565758";
+            currentSlot.style.color = "#aaa";
             currentEntry += String.fromCharCode(keyNum);
         }
         if(currentSquare < codeLength) {
@@ -190,7 +193,7 @@
 
             //Assign default colors
             var fillColor = "#fff";
-            var borderColor = "#333";
+            var borderColor = "black";
             var textColor = "black";
             
             //Paint the identified colors
