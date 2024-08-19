@@ -255,28 +255,6 @@
         }
     }
     
-    function isGreen(letter) {
-        for(var r = 1; r <= currentGuessNum; r++) {
-            for(var c = 1; c <= winCode.length; c++) {
-                var nextLetter = document.getElementById(r+"-"+c).innerHTML;
-                if(winCode.charAt(c-1) == nextLetter && winCode.substring(c-1, c) == letter)
-                    return true;
-            }
-        }
-        return false;
-    }
-    
-    function isGuessed(letter) {
-        for(var r = 1; r <= currentGuessNum; r++) {
-            for(var c = 1; c <= winCode.length; c++) {
-                var nextLetter = document.getElementById(r+"-"+c).innerHTML;
-                if(letter == nextLetter)
-                    return true;
-            }
-        }
-        return false;
-    }
-    
     function getGuessAsColorCodes(guess)
     {
       var win = winCode;
@@ -322,10 +300,6 @@
         currentEntry = "";
 
         // hidePopup();
-
-        var message = "Break the code!";
-        showPopup(message, 'black');
-
         // document.getElementById("alert").innerHTML = "Welcome to Mastermind";
 
         //Assign default colors
@@ -364,6 +338,9 @@
         }
        var playAgainButton = document.getElementById("play-again");
        playAgainButton.style.display = "none";
+
+       var message = "Break the code!";
+       showPopup(message, 'black');
     }
 
     function showPopup(message, color) {
@@ -486,8 +463,8 @@
     <div class="container d-flex justify-content-center">
         <table>
             <tr>
-                <td class="keyboard-key" id="delete" onclick="keyboard('delete')">&#x232B;</td>
-                <td class="keyboard-key" id="enter" onclick="keyboard('enter')">&#9166</td>
+                <td class="keyboard-key" id="delete-key" onclick="keyboard('delete')">&#x232B;</td>
+                <td class="keyboard-key" id="enter-key" onclick="keyboard('enter')">&#9166</td>
             </tr>
         </table>
     </div>
@@ -539,17 +516,7 @@
         font-weight: bold;
         font-size: 30px;
     }
-    .keyboard-key {
-        width: 72px;
-        height: 72px;
-        background-color: rgb(220, 220, 220);
-        border-radius: 5px;
-        border: 2px solid rgb(180, 180, 180);
-        color: #000;
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-    }
+    
     p {
         font-size: 20px;
         font-weight: bold;
@@ -574,11 +541,27 @@
         border-width: 0px;
     }
 
+    .keyboard-key {
+        width: 72px;
+        height: 72px;
+        background-color: rgb(220, 220, 220);
+        border-radius: 5px;
+        border: 2px solid rgb(180, 180, 180);
+        color: #000;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    
     #play-again {
         width: 160px;
-        height: 50px;
-        padding: 8px 0px;
+        height: 72px;
+/*         padding: 8px 0px; */
         display: none;
+    }
+
+    #enter-key {
+        width: 100px;
     }
     
     /* popup stuff */
