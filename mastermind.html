@@ -101,20 +101,46 @@
     function deleteLastNumber() {
         // document.getElementById("alert").innerHTML = "";
         hidePopup();
-        if(currentSquare > 1) {
-            if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
-                document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = "";
-                document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "rgb(200, 200, 200)";
-            }
-            else {
-                document.getElementById(currentGuessNum + "-" + (currentSquare-1)).innerHTML = "";
-                document.getElementById(currentGuessNum + "-" + (currentSquare-1)).style.borderColor = "rgb(200, 200, 200)";
-                if(currentSquare > 1) {
-                    currentSquare--;
-                }
-            }
-            currentEntry = currentEntry.slice(0, -1);
+        //THIS NEW WAY ALLOWS FOR THE FACT THAT SOME SQUARE CAN BE EMPTY IN THE MIDDLE OF THE CURRENT GUESS
+        var deleteWasMade = false;
+        if(document.getElementById(currentGuessNum + "-4").innerHTML != "") {
+            document.getElementById(currentGuessNum + "-4").innerHTML = "";
+            document.getElementById(currentGuessNum + "-4").style.borderColor = "rgb(200, 200, 200)";
+            deleteWasMade = true;
         }
+        else if(document.getElementById(currentGuessNum + "-3").innerHTML != "") {
+            document.getElementById(currentGuessNum + "-3").innerHTML = "";
+            document.getElementById(currentGuessNum + "-3").style.borderColor = "rgb(200, 200, 200)";
+            deleteWasMade = true;
+        }
+        else if(document.getElementById(currentGuessNum + "-2").innerHTML != "") {
+            document.getElementById(currentGuessNum + "-2").innerHTML = "";
+            document.getElementById(currentGuessNum + "-2").style.borderColor = "rgb(200, 200, 200)";
+            deleteWasMade = true;
+        }
+        else if(document.getElementById(currentGuessNum + "-1").innerHTML != "") {
+            document.getElementById(currentGuessNum + "-1").innerHTML = "";
+            document.getElementById(currentGuessNum + "-1").style.borderColor = "rgb(200, 200, 200)";
+            deleteWasMade = true;
+        }
+        if(deleteWasMade)
+            currentEntry = currentEntry.slice(0, -1);
+        
+        //OLD WAY
+        // if(currentSquare > 1) {
+        //     if(currentSquare == codeLength && document.getElementById(currentGuessNum + "-" + codeLength).innerHTML != "") {
+        //         document.getElementById(currentGuessNum + "-" + currentSquare).innerHTML = "";
+        //         document.getElementById(currentGuessNum + "-" + currentSquare).style.borderColor = "rgb(200, 200, 200)";
+        //     }
+        //     else {
+        //         document.getElementById(currentGuessNum + "-" + (currentSquare-1)).innerHTML = "";
+        //         document.getElementById(currentGuessNum + "-" + (currentSquare-1)).style.borderColor = "rgb(200, 200, 200)";
+        //         if(currentSquare > 1) {
+        //             currentSquare--;
+        //         }
+        //     }
+        //     currentEntry = currentEntry.slice(0, -1);
+        // }
     }
 
     function submitCurrentGuess() {
@@ -303,9 +329,9 @@
    }
 
    function setNextNumberOnTile(tileId) {
-       hidePopup();
        var row = tileId.substring(0, 1);
        if(row == currentGuessNum) {
+           hidePopup();
            var currentTile = document.getElementById(tileId);
            currentTile.style.borderColor = "#565758";
            currentTile.style.color = "#aaa";
