@@ -85,14 +85,14 @@
             console.log("num = " + num + " winCode = " + winCode);
         }
 
-        for(var i = 0; i < codeLength; i++)
-            winCode += Math.round(Math.random()*3) + 1;
+        // for(var i = 0; i < codeLength; i++)
+        //     winCode += Math.round(Math.random()*3) + 1;
         console.log("winCode = " + winCode);
     }
 
     function winCodeAlreadyHasTwoOfThese(num) {
         var count = 0;
-        for(int i = 0; i < winCode.length; i++)
+        for(var i = 0; i < winCode.length; i++)
             if(Number(winCode.substring(i, i+1)) == num)
                 count++;
         console.log("Check for two: " + winCode + " " + count);
