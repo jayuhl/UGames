@@ -487,27 +487,34 @@
 </script>
 
 <body onload="wordle()">
-    <div class="row" id="navbar">
-        <div class="col-3">
-        </div>
-        <div class="col-6 d-flex justify-content-center">
-            <a class="navbar-brand text-center">
-                <h1 class="mt-3" style="font-family: serif">Mastermind</h1>
-            </a>
+    <!-- <div class="row" id="navbar"> -->
+        <!-- <div class="col-3">
+        </div> -->
+        <!-- <div class="col-6 d-flex justify-content-center"> -->
 
-         <div class="dropdown">
-            <button onclick="levelSelection()" class="dropbtn">Easy</button>
-            <div id="myDropdown" class="dropdown-content">
-                <a href="#">Link 1</a>
-                <a href="#">Link 2</a>
-                <a href="#">Link 3</a>
+            <!-- <a class="navbar-brand text-center"> -->
+                <!-- <h1 class="mt-3" style="font-family: serif">Mastermind</h1> -->
+            <!-- </a> -->
+
+            <div class="title-container">
+                <h1 id="title">Mastermind</h1>
+                
+                
+                <div class="dropdown">
+                    <button onclick="levelSelection()" class="dropbtn">Medium</button>
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="#">Easy</a>
+                        <a href="#">Medium</a>
+                        <a href="#">Hard</a>
+                    </div>
+                </div>
+
             </div>
-        </div>
-            
-        </div>
-        <div class="col-3">
-        </div>
-    </div>
+                
+        <!-- </div> -->
+        <!-- <div class="col-3">
+        </div> -->
+    <!-- </div> -->
 
     <div class="center popup">
         <div class="popuptext" id="myPopup">Mastermind!</div>
@@ -633,6 +640,20 @@
     h1 {
         font-weight: bold!important;
     }
+    .title-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    #title {
+        flex-basis: 240px; /* for centering */
+        margin-top: 18px;
+        margin-bottom: 18px;
+        font-family: serif
+    }
     #navbar {
         background-color: #fff;
         border-bottom:1px solid #000;
@@ -716,12 +737,14 @@
  /* Level Selection Stuff */
     /* Dropdown Button */
     .dropbtn {
-      background-color: #3498DB;
-      color: white;
-      padding: 16px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
+        width: 70px;
+        height: 32px;
+        background-color: #3498DB;
+        color: white;
+        padding: 0px 26px 5px 16x;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
     }
     
     /* Dropdown button on hover & focus */
@@ -740,9 +763,10 @@
       display: none;
       position: absolute;
       background-color: #f1f1f1;
-      min-width: 160px;
+      min-width: 80px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
+      margin-left: -30px;
     }
     
     /* Links inside the dropdown */
@@ -793,7 +817,7 @@
         padding: 10px 10px;
         position: absolute;
         z-index: 1;
-        margin-top: 10px;
+        /* margin-top: 0px; */
     }
     /* Toggle this class - hide and show the popup */
     .popup .show {
