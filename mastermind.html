@@ -302,14 +302,18 @@
        enterButton.innerHTML = "Enter";
    }
 
-   function getNextNumberForSquare(squareId) {
-       var currentTile = document.getElementById(squareId);
+   function setNextNumberOnTile(tileId) {
+       var currentTile = document.getElementById(tileId);
        var currentNumOnTile = currentTile.innerHTML;
-       var currentNum = Number(currentNumberOnTile);
-       currentNum++;
-       if(currentNum > 4)
-           currentNum = 1;
-       return currentNum;
+       if(currentNumOnTile == "")
+           currentTile.innerHTML = "1";
+       else {
+           var currentNum = Number(currentNumberOnTile);
+           currentNum++;
+           if(currentNum > 4)
+               currentNum = 1;
+           currentTile.innerHTML = currentNum;
+       }
    }
 
    function resetGame()
