@@ -307,14 +307,18 @@
        var row = tileId.substring(0, 1);
        if(row == currentGuessNum) {
            var currentTile = document.getElementById(tileId);
+           currentTile.style.borderColor = "#565758";
+           currentTile.style.color = "#aaa";
            var currentNumOnTile = currentTile.innerHTML;
            if(currentNumOnTile == "")
                currentTile.innerHTML = "1";
            else {
                var currentNum = Number(currentNumOnTile);
                currentNum++;
-               if(currentNum > 4)
+               if(currentNum > 4) {
                    currentTile.innerHTML = "";
+                   currentTile.style.borderColor = "rgb(200,200,200)";
+               }
                currentTile.innerHTML = currentNum;
            }
            setCurrentEntryValueFromTileCurrentRowValues();
