@@ -303,19 +303,32 @@
    }
 
    function setNextNumberOnTile(tileId) {
-       var currentTile = document.getElementById(tileId);
-       var currentNumOnTile = currentTile.innerHTML;
-       if(currentNumOnTile == "")
-           currentTile.innerHTML = "1";
-       else {
-           var currentNum = Number(currentNumberOnTile);
-           currentNum++;
-           if(currentNum > 4)
-               currentNum = 1;
-           currentTile.innerHTML = currentNum;
+       var row = tileId.substring(0, 1);
+       if(row == currentGuessNum) {
+           var currentTile = document.getElementById(tileId);
+           var currentNumOnTile = currentTile.innerHTML;
+           if(currentNumOnTile == "")
+               currentTile.innerHTML = "1";
+           else {
+               var currentNum = Number(currentNumOnTile);
+               currentNum++;
+               if(currentNum > 4)
+                   currentNum = 1;
+               currentTile.innerHTML = currentNum;
+           }
+           setCurrentEntryValueFromTileCurrentRowValues();
        }
    }
 
+   function setCurrentEntryValueFromTileCurrentRowValues() {
+       var firstTileNum = document.getElementById(currentGuessNum + "-1").innerHTML;
+       var secondTileNum = document.getElementById(currentGuessNum + "-2").innerHTML;
+       var thirdTileNum = document.getElementById(currentGuessNum + "-3").innerHTML;
+       var fourthTileNum = document.getElementById(currentGuessNum + "-4").innerHTML;
+       currentEntry = firstTileNum + secondTileNum + thirdTileNum + fourthTileNum;
+       console.log("ENTRY AFTER PRESS IS: " + currentEntry);
+   }
+    
    function resetGame()
    {
         gameOver = false;
@@ -407,9 +420,9 @@
         <table>
             <tr>
                 <td id="1-1" onclick="setNextNumberOnTile('1-1')"></td>
-                <td id="1-2"></td>
-                <td id="1-3"></td>
-                <td id="1-4"></td>
+                <td id="1-2" onclick="setNextNumberOnTile('1-2')"></td>
+                <td id="1-3" onclick="setNextNumberOnTile('1-3')"></td>
+                <td id="1-4" onclick="setNextNumberOnTile('1-4')"></td>
                 <td id="pegbox"
                     <div class="peg-container">
                         <div class="peg" id="pegs1-1"></div>
@@ -420,10 +433,10 @@
                 </td>
             </tr>
             <tr class="m-2">
-                <td id="2-1"></td>
-                <td id="2-2"></td>
-                <td id="2-3"></td>
-                <td id="2-4"></td>
+                <td id="2-1" onclick="setNextNumberOnTile('2-1')"></td>
+                <td id="2-2" onclick="setNextNumberOnTile('2-2')"></td>
+                <td id="2-3" onclick="setNextNumberOnTile('2-3')"></td>
+                <td id="2-4" onclick="setNextNumberOnTile('2-4')"></td>
                 <td id="pegbox"
                     <div class="peg-container">
                         <div class="peg" id="pegs2-1"></div>
@@ -434,10 +447,10 @@
                 </td>
             </tr>
             <tr class="m-2">
-                <td id="3-1"></td>
-                <td id="3-2"></td>
-                <td id="3-3"></td>
-                <td id="3-4"></td>
+                <td id="3-1" onclick="setNextNumberOnTile('3-1')"></td>
+                <td id="3-2" onclick="setNextNumberOnTile('3-2')"></td>
+                <td id="3-3" onclick="setNextNumberOnTile('3-3')"></td>
+                <td id="3-4" onclick="setNextNumberOnTile('3-4')"></td>
                 <td id="pegbox"
                     <div class="peg-container">
                         <div class="peg" id="pegs3-1"></div>
@@ -448,10 +461,10 @@
                 </td>
             </tr>
             <tr class="m-2">
-                <td id="4-1"></td>
-                <td id="4-2"></td>
-                <td id="4-3"></td>
-                <td id="4-4"></td>
+                <td id="4-1" onclick="setNextNumberOnTile('4-1')"></td>
+                <td id="4-2" onclick="setNextNumberOnTile('4-2')"></td>
+                <td id="4-3" onclick="setNextNumberOnTile('4-3')"></td>
+                <td id="4-4" onclick="setNextNumberOnTile('4-4')"></td>
                 <td id="pegbox"
                     <div class="peg-container">
                         <div class="peg" id="pegs4-1"></div>
@@ -462,10 +475,10 @@
                 </td>
                 </tr>
             <tr class="m-2">
-                <td id="5-1"></td>
-                <td id="5-2"></td>
-                <td id="5-3"></td>
-                <td id="5-4"></td>
+                <td id="5-1" onclick="setNextNumberOnTile('5-1')"></td>
+                <td id="5-2" onclick="setNextNumberOnTile('5-2')"></td>
+                <td id="5-3" onclick="setNextNumberOnTile('5-3')"></td>
+                <td id="5-4" onclick="setNextNumberOnTile('5-4')"></td>
                 <td id="pegbox"
                     <div class="peg-container">
                         <div class="peg" id="pegs5-1"></div>
