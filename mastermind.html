@@ -78,14 +78,14 @@
         winCode = "";
         var dist = [];
         var count = 0;
-        while(winCode.length < 4 && count < 100) {
+        // while(winCode.length < 4 && count < 100) {
             count++;
             var num = Math.round(Math.random()*3) + 1;
             dist[num] = dist[num]++;
             if(dist[num] <= 2)
                 winCode += num;
             console.log(winCode);
-        }
+        // }
         // for(var i = 0; i < codeLength; i++)
         //     winCode += Math.round(Math.random()*3) + 1;
         console.log("winCode = " + winCode + " " + dist);
