@@ -80,6 +80,18 @@
             winCode += Math.round(Math.random()*3) + 1;
         console.log("winCode = " + winCode);
     }
+
+    function setCurrentSquareValueBasedOnOpenSquares() {
+        //THIS NEW WAY ALLOWS FOR THE FACT THAT SOME SQUARE CAN BE EMPTY IN THE MIDDLE OF THE CURRENT GUESS
+        if(document.getElementById(currentGuessNum + "-1").innerHTML == "")
+            currentSquare = 1;
+        else if(document.getElementById(currentGuessNum + "-2").innerHTML == "")
+            currentSquare = 2;
+        else if(document.getElementById(currentGuessNum + "-2").innerHTML == "")
+            currentSquare = 3;
+        else if(document.getElementById(currentGuessNum + "-1").innerHTML == "")
+            currentSquare = 4;
+    }
     
     function addNumberToCurrentGuess(keyNum) {
         // document.getElementById("alert").innerHTML = "";
@@ -92,10 +104,11 @@
             currentSlot.style.color = "#aaa";
             currentEntry += String.fromCharCode(keyNum);
         }
-        if(currentSquare < codeLength) {
-            currentSquare++;
-            console.log("currentSquare = " + currentSquare);
-        }
+        // if(currentSquare < codeLength) {
+        //     currentSquare++;
+        //     console.log("currentSquare = " + currentSquare);
+        // }
+        setCurrentSquareValueBasedOnOpenSquares();
     }
 
     function deleteLastNumber() {
@@ -125,6 +138,8 @@
         }
         if(deleteWasMade)
             currentEntry = currentEntry.slice(0, -1);
+        
+        setCurrentSquareValueBasedOnOpenSquares();
         
         //OLD WAY
         // if(currentSquare > 1) {
@@ -349,6 +364,7 @@
                    currentTile.innerHTML = currentNum;
            }
            setCurrentEntryValueFromTileCurrentRowValues();
+           setCurrentSquareValueBasedOnOpenSquares();
        }
    }
 
