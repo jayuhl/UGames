@@ -76,26 +76,27 @@
 
     function setWinCode() {
         winCode = "";
-        var dist = [0,0,0,0];
         var count = 0;
-        // while(winCode.length < 4 && count < 100) {
-            // count++;
-        for(var i = 0; i < 10; i++) {
+        while(winCode.length < 4 && count < 100) {
+            count++;
             var num = Math.round(Math.random()*3) + 1;
-            console.log("num = " + num + " add to = " + dist[num]);
-            dist[num] = dist[num]++;
+            if(!winCodeAlreadyHasTwoOfThese(num))
+                winCode += num;
+            console.log("num = " + num + " winCode = " + winCode);
         }
-            // if(dist[num] <= 2)
-            //     winCode += num;
-            // console.log(winCode);
-        // }
+
         for(var i = 0; i < codeLength; i++)
             winCode += Math.round(Math.random()*3) + 1;
         console.log("winCode = " + winCode);
-        console.log("dis[0] = " + dist[0]);
-        console.log("dis[1] = " + dist[1]);
-        console.log("dis[2] = " + dist[2]);
-        console.log("dis[3] = " + dist[3]);
+    }
+
+    function winCodeAlreadyHasTwoOfThese(num) {
+        var count = 0;
+        for(int i = 0; i < winCode.length; i++)
+            if(Number(winCode.substring(i, i+1)) == num)
+                count++;
+        console.log("Check for two: " + winCode + " " + count);
+        return count >= 2;
     }
 
     function setCurrentSquareValueBasedOnOpenSquares() {
