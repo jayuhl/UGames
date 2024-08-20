@@ -76,9 +76,16 @@
 
     function setWinCode() {
         winCode = "";
-        for(var i = 0; i < codeLength; i++)
-            winCode += Math.round(Math.random()*3) + 1;
-        console.log("winCode = " + winCode);
+        var dist = [];
+        while(winCode.length < 4) {
+            num += Math.round(Math.random()*3) + 1;
+            dist[num] = dist[num]++;
+            if(dist[num] <= 2)
+                winCode += num;
+        }
+        // for(var i = 0; i < codeLength; i++)
+        //     winCode += Math.round(Math.random()*3) + 1;
+        console.log("winCode set as: " + winCode);
     }
 
     function setCurrentSquareValueBasedOnOpenSquares() {
