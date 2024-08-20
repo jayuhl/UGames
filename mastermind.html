@@ -303,6 +303,7 @@
    }
 
    function setNextNumberOnTile(tileId) {
+       hidePopup();
        var row = tileId.substring(0, 1);
        if(row == currentGuessNum) {
            var currentTile = document.getElementById(tileId);
@@ -313,7 +314,7 @@
                var currentNum = Number(currentNumOnTile);
                currentNum++;
                if(currentNum > 4)
-                   currentNum = 1;
+                   currentTile.innerHTML = "";
                currentTile.innerHTML = currentNum;
            }
            setCurrentEntryValueFromTileCurrentRowValues();
