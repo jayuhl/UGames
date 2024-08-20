@@ -302,6 +302,16 @@
        enterButton.innerHTML = "Enter";
    }
 
+   function getNextNumberForSquare(squareId) {
+       var currentTile = document.getElementById(squareId);
+       var currentNumOnTile = currentTile.innerHTML;
+       var currentNum = Number(currentNumberOnTile);
+       currentNum++;
+       if(currentNum > 4)
+           currentNum = 1;
+       return currentNum;
+   }
+
    function resetGame()
    {
         gameOver = false;
@@ -392,7 +402,7 @@
     <div class="container d-flex justify-content-center mt-3">
         <table>
             <tr>
-                <td id="1-1"></td>
+                <td id="1-1" onclick="keyboard('1-1')"></td>
                 <td id="1-2"></td>
                 <td id="1-3"></td>
                 <td id="1-4"></td>
