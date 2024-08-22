@@ -165,16 +165,13 @@
         var currentSlot = document.getElementById(currentGuessNum + "-" + currentSquare);
         
         if(currentSlot.innerHTML == "") {
-            console.log("ADDING: " + keyNum);
             currentSlot.innerHTML = String.fromCharCode(keyNum);
             currentSlot.style.borderColor = "#565758";
             currentSlot.style.color = "#aaa";
-            currentEntry += String.fromCharCode(keyNum);
+            setCurrentEntryValueFromTileCurrentRowValues()
+            console.log("ADDING: " + String.fromCharCode(keyNum) + " currentEntry = " + currentEntry);
         }
-        // if(currentSquare < codeLength) {
-        //     currentSquare++;
-        //     console.log("currentSquare = " + currentSquare);
-        // }
+
         setCurrentSquareValueBasedOnOpenSquares();
     }
 
@@ -184,8 +181,6 @@
        if(row == currentGuessNum) {
            hidePopup();
            deactivateLevelDropDown();
-        //    document.getElementById("levelButton").style.backgroundColor = "#aaa";
-        //    document.getElementById("myDropdown").style.display = "none";
 
            var currentTile = document.getElementById(tileId);
            currentTile.style.borderColor = "#565758";
@@ -209,7 +204,6 @@
    }
 
     function deleteLastNumber() {
-        // document.getElementById("alert").innerHTML = "";
         hidePopup();
         //THIS NEW WAY ALLOWS FOR THE FACT THAT SOME SQUARE CAN BE EMPTY IN THE MIDDLE OF THE CURRENT GUESS
         var deleteWasMade = false;
@@ -280,10 +274,8 @@
 
     function checkLose() {
         if(!gameOver && currentGuessNum >= numGuesses) {
-            // console.log("hello");
             // var message = "You lose! The number was <em>" + winCode + "</em>";
             var message = "The code was: " + winCode;
-            // document.getElementById("alert").innerHTML = '+ to play again';
             gameOver = true;
             showPlayAgainButton();
             setLoseColors();
@@ -793,13 +785,13 @@
     
     /* Dropdown button on hover & focus */
     .dropbtn:hover, .dropbtn:focus {
-      background-color: #2980B9;
+        background-color: #2980B9;
     }
     
     /* The container <div> - needed to position the dropdown content */
     .dropdown {
-      position: relative;
-      display: inline-block;
+        position: relative;
+        display: inline-block;
     }
     
     /* Dropdown Content (Hidden by Default) */
@@ -817,10 +809,10 @@
     
     /* Links inside the dropdown */
     .dropdown-content a {
-      color: black;
-      padding: 12px 16px;
-      text-decoration: none;
-      display: block;
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
     }
     
     /* Change color of dropdown links on hover */
